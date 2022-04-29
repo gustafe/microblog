@@ -8,13 +8,15 @@ use Template;
 use FindBin qw/$Bin/;
 use Time::Piece;
 use List::Util qw/min max/;
+use JSON::XS;
+use Encode;
 use utf8;
 use open qw/ :std :encoding(utf8) /;
 #binmode STDOUT, ':utf8';
 binmode(STDOUT, ":encoding(UTF-8)");
-my $debug =1;
+my $debug =0;
 my $days_to_show = 17;
-
+my $now = gmtime;
 my $RE_DATE_TITLE    = qr/^(\d{4}-\d{2}-\d{2})(.*?)\n(.*)/s;
 my $RE_AT_PAGE_TITLE =
     qr/^@([a-z0-9_-]+)\[(.+)\]\s+(\d{4}-\d{2}-\d{2})(!?)(.*?)\n(.*)/s;
@@ -22,9 +24,12 @@ my $RE_AT_PAGE_TITLE =
 my $filename = shift @ARGV;
 die "usage: $0 <filename with entries>" unless defined $filename;
 
-my %config = ( filename => $filename );
+my %config = ( filename => $filename, blog_name => 'µblog' );
 $config{output_path}='/home/gustaf/public_html/m';
-$config{blog_name}='μblog';
+#$config{blog_name}=   'µblog'; #'&micro;blog';
+$config{blog_url}='https://gerikson.com/m/';
+$config{blog_author}='Gustaf Erikson';
+  
 my ( $days, $pages ) = collect_days_and_pages ( read_entries($config{filename}));
 
 
@@ -43,24 +48,56 @@ for my $day (@$days) {
     
     $count++;
 }
-#dump $archive_footer;
+#dump $frontpage;
 my $tt = Template->new({INCLUDE_PATH=>"$Bin/templates", ENCODING=>'UTF-8' });
 
-my %data = (meta=>{title=>$config{blog_name}},
+my %data = (meta=>{ title=>$config{blog_name},
+		    author=>$config{blog_author},
+		    site => $config{blog_url},
+		  },
 	    days=>$frontpage,
 	   archive_footer=>$archive_footer);
 
 $tt->process( 'microblog.tt', \%data, $config{output_path}.'/index.html',{binmode=>':utf8'}) || die $tt->error;
 
+# JSON feed
+
+my $feed = {version=>"https://jsonfeed.org/version/1.1",
+	    title=>encode('UTF-8',$config{blog_name}),
+	    home_page_url=>$config{blog_url},
+	    feed_url=>$config{blog_url}.'feed.json',
+	    authors => [{name => $config{blog_author},
+			url=>$config{blog_url},}]
+	   };
+for my $day (@{$frontpage}) {
+    my $td =Time::Piece->strptime($day->{date}, "%Y-%m-%d");
+    for my $art (@{$day->{articles}}		  ) {
+	push @{$feed->{items}}, { id=>$art->{id},
+				  url=> $config{blog_url}.sprintf('%04d-%02d.html#%s', $td->year, $td->mon, $art->{id}),
+				  content_html=>$art->{html},
+				  date_published => sprintf('%sT%s+00:00',$day->{date}, $now->hms),
+				  
+				  		}
+    }
+}
+
+#dump $feed;
+my $feed_json = encode_json($feed);
+utf8::decode( $feed_json);
+print utf8::is_utf8($feed_json) ? "UTF8" : "OCTETS" . "\n";
+$tt->process( 'jsonfeed.tt', {content=>$feed_json},$config{output_path}.'/feed.json',{binmode=>':utf8'}) || die $tt->error;
+#my $feed_json = JSON::XS->new->encode ($feed);
+
+
+exit 0 if $debug;
 # archives
 
 for my $year (min(keys %$archive) .. max(keys %$archive )) {
     for my $mon (1 .. 12) {
 	if ($archive->{$year}{$mon}) {
-#	    say "generating for $year $mon...";
-	    %data = ( meta => {title => sprintf("%s - archive for %04d-%02d",$config{blog_name},$year ,$mon)},
-		      days => $archive->{$year}{$mon},
-		    archive_footer=>$archive_footer);
+	    #	    say "generating for $year $mon...";
+	    $data{meta}{title} = sprintf("%s - archive for %04d-%02d",$config{blog_name},$year ,$mon);
+	    $data{days} = $archive->{$year}{$mon};
 	    $tt->process('microblog.tt', \%data, sprintf("%s/%04d-%02d.html",$config{output_path}, $year, $mon), {binmode=>':utf8'}) || die $tt->error;
 	}
     }
@@ -119,13 +156,15 @@ sub convert_articles_to_html {
     my $items = shift;
     for my $item ( @$items ) {
         my @articles;
+	my $seq = 1;
         for my $article ( @{ $item->{ articles } } ) {
             my $ast = CommonMark->parse_document( $article );
             my $nodes = rewrite_ast( $ast );
             my $html = qq(<article>\n)
                 . $ast->render_html( OPT_UNSAFE )  # support (inline) HTML
                 . "</article>\n";
-            push @articles, { html => $html };
+            push @articles, { html => $html, id=>$item->{date} .sprintf("_%02d", $seq) };
+	    $seq++;
         }
         $item->{ articles } = \@articles;
     }

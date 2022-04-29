@@ -1,12 +1,9 @@
+2022-04-29 Friday, 29 April 2022
+
+Coming up hard against the realization that a fortune-style file format is pretty limiting. 
+
+%
 2022-04-28 Thursday, 28 April 2022
-[JSONfeed](https://www.jsonfeed.org/version/1.1/)
-
-[Validation link](https://validator.jsonfeed.org/)
-
-%
-
-So much US history makes more sense when you consider it as a massive reaction against black people. 
-%
 
 ### Announcing my microblog
 
@@ -30,6 +27,14 @@ This microblog project is coming along quite nicely. I've managed to extract my 
 
 %
 It would be too funny if the Twitter deal fell through and Elon didn't swoop in like the great White hope his awful fans claim him to be.
+%
+[JSONfeed](https://www.jsonfeed.org/version/1.1/)
+
+[Validation link](https://validator.jsonfeed.org/)
+
+%
+
+So much US history makes more sense when you consider it as a massive reaction against black people. 
 %
 2022-04-27 Wednesday, 27 April 2022
 Watch out NYRB, the substackers are coming for you 

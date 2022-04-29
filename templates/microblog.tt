@@ -15,13 +15,13 @@
     <h1>[% meta.title -%]</h1>
     <a href="#end">Archive</a>
     [% FOREACH d IN days %]
-    [% SET seq = 1 %]
+
     [% FOREACH art IN d.articles %]
-    <article id="[% anchor_id(d.date, seq) %]">
+    <article id="[% art.id %]">
       [% art.html %]
-      <a href="#[% anchor_id(d.date, seq) %]">#</a>
+      <a href="#[% art.id %]">#</a>
       </article>
-    [% SET seq = seq + 1 %]
+
     [% END %]
     [% END %]
 
