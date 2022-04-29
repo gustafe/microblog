@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[% meta.title %]</title>
+    </head>
+  <body>
+
+    [% USE format %]
+    [% anchor_id = format('%s_%02d') %]
+    [% year_mon = format('%04d-%02d') %]
+    [% leading_space_mon = format('%2d') %]
+    <h1>[% meta.title -%]</h1>
+    <a href="#end">Archive</a>
+    [% FOREACH d IN days %]
+    [% SET seq = 1 %]
+    [% FOREACH art IN d.articles %]
+    <article id="[% anchor_id(d.date, seq) %]">
+      [% art.html %]
+      <a href="#[% anchor_id(d.date, seq) %]">#</a>
+      </article>
+    [% SET seq = seq + 1 %]
+    [% END %]
+    [% END %]
+
+
+    <h3 id="end">Archive</h3>
+    <ul>
+  [% FOREACH year IN archive_footer.keys.sort.reverse %]
+  <li> [% year -%] 
+    [% FOREACH mon IN [1,2,3,4,5,6,7,8,9,10,11,12] %]
+    [% IF archive_footer.$year.$mon   %] <a href="[% year_mon(year, mon) -%].html">[% leading_space_mon(mon) -%]</a>&nbsp;
+    [% ELSE %] [% leading_space_mon(mon) -%]&nbsp;
+    [% END %] 
+    [% END %]
+    </li>
+    
+  [% END %] 
+    </ul>
+  </body>
+  </html>
