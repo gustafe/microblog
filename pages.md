@@ -15,7 +15,7 @@ This is another section.
 @subscribe[subscribe] 2022-05-01! Subscribe
 ## Subscribe
 
-- [Atom](/feed.atom)
-- [JSON](/feed.json)
+- [Atom](/m/feed.atom)
+- [JSON](/m/feed.json)
 
 %

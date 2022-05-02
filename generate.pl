@@ -29,8 +29,6 @@ die "usage: $0 <filename with entries>" unless defined $filename;
 
 my %config = ( filename => $filename, blog_name => 'µblog' );
 $config{output_path} = '/home/gustaf/public_html/m';
-
-#$config{blog_name}=   'µblog'; #'&micro;blog';
 $config{blog_url}    = 'https://gerikson.com/m/';
 $config{blog_author} = 'Gustaf Erikson';
 
@@ -70,15 +68,13 @@ my %data = (
     archive_footer => $archive_footer,
 );
 
-$tt->process(
-    'microblog.tt', \%data,
-    $config{output_path} . '/index.html',
-    { binmode => ':utf8' }
-) || die $tt->error;
+render_page( 'microblog.tt', \%data, $config{output_path}.'/index.html');
+
+#$tt->process(    'microblog.tt', \%data,    $config{output_path} . '/index.html',    { binmode => ':utf8' }) || die $tt->error;
 
 # JSON feed
 
-my $feed = {
+my $json_feed = {
     version       => "https://jsonfeed.org/version/1.1",
     title         => $config{blog_name},
     home_page_url => $config{blog_url},
@@ -99,17 +95,17 @@ $atom_feed->id('tag:gerikson.com/m,2022:feed-id');
 for my $day ( @{$frontpage} ) {
     my $td = Time::Piece->strptime( $day->{date}, "%Y-%m-%d" );
     for my $art ( @{ $day->{articles} } ) {
-        push @{ $feed->{items} },
+        push @{ $json_feed->{items} },
             {
             id  => $art->{id},
             url => $config{blog_url}
                 . sprintf(
-                '%04d-%02d.html#%s',
+                '%04d/%02d/index.html#%s',
                 $td->year, $td->mon, $art->{id}
                 ),
             content_html => $art->{html},
             date_published =>
-                sprintf( '%sT%s+00:00', $day->{date}, $now->hms ),
+                sprintf( '%sT%02d:%02d:%02d+00:00', $day->{date}, $td->year%24, $td->mon%60, $td->mday%60 ),
             };
         my $entry = XML::Atom::Entry->new();
         $entry->content( $art->{html} );
@@ -117,22 +113,14 @@ for my $day ( @{$frontpage} ) {
     }
 }
 
-my $feed_json = encode_json($feed);
+my $feed_json = encode_json($json_feed);
 utf8::decode($feed_json);
-$tt->process(
-    'feed.tt',
-    { content => $feed_json },
-    $config{output_path} . '/feed.json',
-    { binmode => ':utf8' }
-) || die $tt->error;
+render_page('feed.tt', {content=>$feed_json}, $config{output_path}.'/feed.json');
+#$tt->process(    'feed.tt',    { content => $feed_json },    $config{output_path} . '/feed.json',    { binmode => ':utf8' }) || die $tt->error;
 my $xml = $atom_feed->as_xml;
 utf8::decode($xml);
-$tt->process(
-    'feed.tt',
-    { content => $xml },
-    $config{output_path} . '/feed.atom',
-    { binmode => ':utf8' }
-) || die $tt->error;
+render_page('feed.tt', {content=>$xml}, $config{output_path}.'/feed.atom');
+#$tt->process(    'feed.tt',    { content => $xml },    $config{output_path} . '/feed.atom',    { binmode => ':utf8' }) || die $tt->error;
 
 exit 0 if $debug;
 
@@ -146,11 +134,8 @@ for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
             $data{meta}{title} = sprintf( "%s - archive for %04d-%02d",
                 $config{blog_name}, $year, $mon );
             $data{days} = $archive->{$year}{$mon};
-            $tt->process( 'microblog.tt', \%data,
-			  sprintf( "%s/%04d-%02d.html",
-				   $config{output_path}, $year, $mon ),
-                { binmode => ':utf8' }
-            ) || die $tt->error;
+	    render_page('microblog.tt', \%data, sprintf( "%s/%04d/%02d/index.html",
+				   $config{output_path}, $year, $mon ));
         }
     }
 }
@@ -161,7 +146,7 @@ if (@$pages) {
     for my $page (@$pages ) {
 	$data{meta}{title} = sprintf("%s - %s", $config{blog_name}, $page->{title});
 	$data{articles} = $page->{articles};
-	$tt->process( 'page.tt', \%data, sprintf("%s/%s.html", $config{output_path}, $page->{name}), {binmode=>':utf8'}) || die $tt->error;
+	render_page('page.tt',\%data, sprintf("%s/%s.html", $config{output_path}, $page->{name}));
     }
 }
 ### SUBS
@@ -322,4 +307,9 @@ sub read_entries {
     @$entries or die 'No entries found';
 
     return $entries;
+}
+
+sub render_page {
+    my ($template, $payload, $output ) = @_;
+    $tt->process($template, $payload, $output, { binmode=>':utf8' }) || die $tt->error;
 }
