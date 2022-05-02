@@ -1,32 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>[% meta.title %]</title>
-    </head>
-  <body>
-
+[% INCLUDE head.tt %]
     [% USE format %]
     [% anchor_id = format('%s_%02d') %]
     [% year_mon = format('%04d-%02d') %]
     [% leading_space_mon = format('%2d') %]
     <h1>[% meta.title -%]</h1>
-    <a href="#end">Archive</a>
+    <p><a href="[% meta.site -%]">home</a> | <a href="#archive">archive</a> | <a href="[% meta.site -%]/about.html">about</a> | <a href="[% meta.site -%]/subscribe.html">subscribe</a></p> 
     [% FOREACH d IN days %]
-
+    <h2 class="date" id=[% d.date -%]><a href="#[% d.date -%]">[% d.title -%]</a></h2>
     [% FOREACH art IN d.articles %]
     <article id="[% art.id %]">
       [% art.html %]
-      <a href="#[% art.id %]">#</a>
+      <p class="permalink"><a href="#[% art.id %]">#</a></p>
       </article>
 
     [% END %]
     [% END %]
 
 
-    <h3 id="end">Archive</h3>
+    <h3 id="archive">Archive</h3>
     <ul>
   [% FOREACH year IN archive_footer.keys.sort.reverse %]
   <li> [% year -%] 
@@ -39,5 +30,8 @@
     
   [% END %] 
     </ul>
+    <hr />
+<p>Generated on: <em>[% meta.now -%]</em></p>
+    
   </body>
   </html>

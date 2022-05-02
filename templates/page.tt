@@ -1,0 +1,8 @@
+[% INCLUDE head.tt %]
+  <h1>[% meta.title -%]</h1>
+  <p><a href="[% meta.site -%]">home</a> | <a href="[% meta.site -%]/about.html">about</a> | <a href="[% meta.site -%]/subscribe.html">subscribe</a></p>
+  [% FOREACH art IN articles %]
+     [% art.html %]
+  [% END %]
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>[% meta.title %]</title>
+    <style>
+    body {
+    background-color: ivory;
+    margin-left: 10%;
+    margin-right: 10%;
+    }
+    h3 {
+    clear: both;
+    font-size: 1.3em
+    }
+    h2.date {
+    clear: both;
+    font-size: 1em;
+    text-align: center;
+    }
+    h2.date a {
+    text-decoration: none;
+    color: black;
+    }
+    h2.data a:hover {
+    text-decoration: underline;
+    }
+    
+    article {
+    margin-top: 10px;
+    margin-right: 10%;
+    border-style: none none dotted none ;
+    }
+    p.permalink {
+    text-align: right;
+    }
+    
+    p.permalink a {
+    text-decoration: none;
+    }
+    p.permalink a:hover {
+    text-decoration: underline;
+    }
+    p.twitter-permalink {
+    text-align: right;
+    }
+    </style>
+    </head>
+  <body>

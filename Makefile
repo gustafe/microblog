@@ -4,6 +4,9 @@ TEMPLATES=$(BIN)/templates
 
 .phony: build
 
-build: content.md $(TEMPLATES)/*.tt
-	@perl $(BIN)/generate.pl content.md
+content.in: *.md
+	cat $^ > $@
+
+build: content.in $(TEMPLATES)/*.tt
+	@perl $(BIN)/generate.pl content.in
 
