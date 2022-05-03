@@ -1,12 +1,13 @@
 HOME=/home/gustaf
 BIN=$(HOME)/prj/Microblog
 TEMPLATES=$(BIN)/templates
+CONTENT=$(BIN)/Content
 
 .phony: build
 
-content.in: *.md
-	cat $^ > $@
+$(CONTENT)/all: $(CONTENT)/*.md
+	@cat $^ > $@
 
-build: content.in $(TEMPLATES)/*.tt
-	@perl $(BIN)/generate.pl content.in
+build: $(CONTENT)/all $(TEMPLATES)/*.tt
+	@perl $(BIN)/generate.pl $(CONTENT)/all
 

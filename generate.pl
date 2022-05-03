@@ -1,5 +1,9 @@
 #! /usr/bin/env perl
-# significant parts of this code is adapted from John Bokma's Tumblelog project, available at https://github.com/john-bokma/tumblelog
+
+# significant parts of this code is adapted from John Bokma's
+# Tumblelog project, available at
+# https://github.com/john-bokma/tumblelog
+
 use Modern::Perl '2015';
 use Path::Tiny;
 use CommonMark qw(:opt :node :event);
@@ -10,12 +14,10 @@ use Time::Piece;
 use List::Util qw/min max/;
 use JSON::XS;
 use Encode;
-use XML::Atom::Feed;
-use XML::Atom::Entry;
+use XML::Atom::SimpleFeed;
 use utf8;
 use open qw/ :std :encoding(utf8) /;
 
-#binmode STDOUT, ':utf8';
 binmode( STDOUT, ":encoding(UTF-8)" );
 my $debug         = 0;
 my $days_to_show  = 17;
@@ -52,8 +54,7 @@ for my $day (@$days) {
 
     $count++;
 }
-#create_pages( $pages );
-#dump $pages;
+
 my $tt = Template->new(
     { INCLUDE_PATH => "$Bin/templates", ENCODING => 'UTF-8' } );
 
@@ -68,9 +69,7 @@ my %data = (
     archive_footer => $archive_footer,
 );
 
-render_page( 'microblog.tt', \%data, $config{output_path}.'/index.html');
-
-#$tt->process(    'microblog.tt', \%data,    $config{output_path} . '/index.html',    { binmode => ':utf8' }) || die $tt->error;
+render_page( 'microblog.tt', \%data, $config{output_path} . '/index.html' );
 
 # JSON feed
 
@@ -88,54 +87,74 @@ my $json_feed = {
 
 # Atom
 
-my $atom_feed = XML::Atom::Feed->new();
-$atom_feed->title( $config{blog_name} );
-$atom_feed->id('tag:gerikson.com/m,2022:feed-id');
+my $atom_feed = XML::Atom::SimpleFeed->new(
+    -encoding => 'utf-8',
+    title     => $config{blog_name},
+    link      => {
+        rel  => 'alternate',
+        href => $config{blog_url} . 'feed.atom',
+        type => 'text/plain'
+    },
+    updated => $now->datetime . '+00:00',
+    id      => 'tag:gerikson.com,2022-05-01:feed-id',
+    author  => {
+        name => 'Gustaf Erikson',
+        url  => 'https://gerikson.com'
+    },
+);
 
 for my $day ( @{$frontpage} ) {
     my $td = Time::Piece->strptime( $day->{date}, "%Y-%m-%d" );
     for my $art ( @{ $day->{articles} } ) {
+        my $url = $config{blog_url}
+            . sprintf( '%04d/%02d/index.html#%s',
+            $td->year, $td->mon, $art->{id} );
+        my ( $date_title, $seq ) = split( /\_/, $art->{id} );
+        my $publish_date = sprintf(
+            '%sT%02d:%02d:%02d+00:00',
+            $day->{date}, $td->year % 24, $td->mon % 60,
+            ( $td->mday + $seq ) % 60
+        );
         push @{ $json_feed->{items} },
             {
-            id  => $art->{id},
-            url => $config{blog_url}
-                . sprintf(
-                '%04d/%02d/index.html#%s',
-                $td->year, $td->mon, $art->{id}
-                ),
-            content_html => $art->{html},
-            date_published =>
-                sprintf( '%sT%02d:%02d:%02d+00:00', $day->{date}, $td->year%24, $td->mon%60, $td->mday%60 ),
+            id             => $art->{id},
+            url            => $url,
+            content_html   => $art->{html},
+            date_published => $publish_date,
             };
-        my $entry = XML::Atom::Entry->new();
-        $entry->content( $art->{html} );
-        $atom_feed->add_entry($entry);
+
+        $atom_feed->add_entry(
+            title => $date_title, id => $url,
+            link => { rel => 'alternate', href => $url, type => 'text/html' },
+            updated => $publish_date, content => $art->{html},
+        );
     }
 }
 
 my $feed_json = encode_json($json_feed);
 utf8::decode($feed_json);
-render_page('feed.tt', {content=>$feed_json}, $config{output_path}.'/feed.json');
-#$tt->process(    'feed.tt',    { content => $feed_json },    $config{output_path} . '/feed.json',    { binmode => ':utf8' }) || die $tt->error;
-my $xml = $atom_feed->as_xml;
+render_page( 'feed.tt', { content => $feed_json },
+    $config{output_path} . '/feed.json' );
+my $xml = $atom_feed->as_string();
 utf8::decode($xml);
-render_page('feed.tt', {content=>$xml}, $config{output_path}.'/feed.atom');
-#$tt->process(    'feed.tt',    { content => $xml },    $config{output_path} . '/feed.atom',    { binmode => ':utf8' }) || die $tt->error;
+render_page( 'feed.tt', { content => $xml },
+    $config{output_path} . '/feed.atom' );
 
 exit 0 if $debug;
-
+#printf("%32b\n",OPT_UNSAFE);
+#printf("%32b\n",OPT_SMART);
+#printf("%32b\n",OPT_SMART|OPT_UNSAFE);
 # archives
 
 for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
     for my $mon ( 1 .. 12 ) {
         if ( $archive->{$year}{$mon} ) {
-
-            #	    say "generating for $year $mon...";
             $data{meta}{title} = sprintf( "%s - archive for %04d-%02d",
                 $config{blog_name}, $year, $mon );
             $data{days} = $archive->{$year}{$mon};
-	    render_page('microblog.tt', \%data, sprintf( "%s/%04d/%02d/index.html",
-				   $config{output_path}, $year, $mon ));
+            render_page( 'microblog.tt', \%data,
+                sprintf( "%s/%04d/%02d/index.html",
+			 $config{output_path}, $year, $mon ));
         }
     }
 }
@@ -143,10 +162,12 @@ for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
 ### pages
 
 if (@$pages) {
-    for my $page (@$pages ) {
-	$data{meta}{title} = sprintf("%s - %s", $config{blog_name}, $page->{title});
-	$data{articles} = $page->{articles};
-	render_page('page.tt',\%data, sprintf("%s/%s.html", $config{output_path}, $page->{name}));
+    for my $page (@$pages) {
+        $data{meta}{title}
+            = sprintf( "%s - %s", $config{blog_name}, $page->{title} );
+        $data{articles} = $page->{articles};
+        render_page( 'page.tt', \%data,
+            sprintf( "%s/%s.html", $config{output_path}, $page->{name} ) );
     }
 }
 ### SUBS
@@ -206,9 +227,9 @@ sub convert_articles_to_html {
         my @articles;
         my $seq = 1;
         for my $article ( @{ $item->{articles} } ) {
-            my $ast   = CommonMark->parse_document($article);
+	    my $ast   = CommonMark->parse(string=>$article,smart=>1);
             my $nodes = rewrite_ast($ast);
-            my $html  = $ast->render_html(OPT_UNSAFE);    # support (inline) HTML
+	    my $html = $ast->render_html(OPT_UNSAFE);  # support (inline) HTML
             push @articles,
                 {
                 html => $html,
@@ -228,11 +249,12 @@ sub strip {
     $str =~ s/\s+$//;
     return $str;
 }
+
 sub escape {
 
     my $str = shift;
 
-    for ( $str ) {
+    for ($str) {
         s/&/&amp;/g;
         s/</&lt;/g;
         s/>/&gt;/g;
@@ -310,6 +332,7 @@ sub read_entries {
 }
 
 sub render_page {
-    my ($template, $payload, $output ) = @_;
-    $tt->process($template, $payload, $output, { binmode=>':utf8' }) || die $tt->error;
+    my ( $template, $payload, $output ) = @_;
+    $tt->process( $template, $payload, $output, { binmode => ':utf8' } )
+        || die $tt->error;
 }
