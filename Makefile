@@ -1,5 +1,5 @@
 HOME=/home/gustaf
-BIN=$(HOME)/prj/Microblog
+BIN=$(HOME)/microblog
 TEMPLATES=$(BIN)/templates
 CONTENT=$(BIN)/Content
 
