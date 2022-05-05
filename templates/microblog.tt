@@ -10,7 +10,7 @@
     [% FOREACH art IN d.articles %]
     <article id="[% art.id %]">
       [% art.html %]
-      <p class="permalink"><a href="#[% art.id %]">#</a></p>
+      <p class="permalink"><a href="[% meta.site -%]/[% archive_link(d.year, d.mon) -%]#[% art.id %]">#</a></p>
       </article>
 
     [% END %]
