@@ -31,7 +31,7 @@ die "usage: $0 <filename with entries>" unless defined $filename;
 
 my %config = ( filename => $filename, blog_name => 'µblog' );
 $config{output_path} = '/home/gustaf/public_html/m';
-$config{blog_url}    = 'https://gerikson.com/m/';
+$config{blog_url}    = 'https://gerikson.com/m';
 $config{blog_author} = 'Gustaf Erikson';
 
 my ( $days, $pages )
@@ -46,6 +46,9 @@ my $archive_footer;
 my $count = 0;
 for my $day (@$days) {
     my $time = Time::Piece->strptime( $day->{date}, "%Y-%m-%d" );
+    $day->{year} = $time->year;
+    $day->{mon} = $time->mon;
+    $day->{mday} = $time->mday;
     if ( $count < $days_to_show ) {
         push @$frontpage, $day;
     }
@@ -104,16 +107,16 @@ my $atom_feed = XML::Atom::SimpleFeed->new(
 );
 
 for my $day ( @{$frontpage} ) {
-    my $td = Time::Piece->strptime( $day->{date}, "%Y-%m-%d" );
+
     for my $art ( @{ $day->{articles} } ) {
         my $url = $config{blog_url}
-            . sprintf( '%04d/%02d/index.html#%s',
-            $td->year, $td->mon, $art->{id} );
+            . sprintf( '/%04d/%02d/index.html#%s',
+            $day->{year}, $day->{mon}, $art->{id} );
         my ( $date_title, $seq ) = split( /\_/, $art->{id} );
         my $publish_date = sprintf(
             '%sT%02d:%02d:%02d+00:00',
-            $day->{date}, $td->year % 24, $td->mon % 60,
-            ( $td->mday + $seq ) % 60
+            $day->{date}, $day->{year} % 24, $day->{mon} % 60,
+            ( $day->{mday} + $seq ) % 60
         );
         push @{ $json_feed->{items} },
             {
@@ -141,9 +144,7 @@ render_page( 'feed.tt', { content => $xml },
     $config{output_path} . '/feed.atom' );
 
 exit 0 if $debug;
-#printf("%32b\n",OPT_UNSAFE);
-#printf("%32b\n",OPT_SMART);
-#printf("%32b\n",OPT_SMART|OPT_UNSAFE);
+
 # archives
 
 for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
