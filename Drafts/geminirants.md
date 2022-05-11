@@ -1,15 +1,15 @@
-2021-10-19 2021-10-19
+2021-10-19 Three letter languages
 
-## 🤬 Three letter language
+## 🤬Three letter langua
 
 Nim - python that compiles to C  
 Zig - C that compiles to C  
 Elm - authoritarian JavaScript  
 
 %
-2021-11-19 2021-11-19
+2021-11-19 ennefftee
 
-## 🤬 ennefftee
+## ennefftee [rant]
 
 (Note: this was originally a draft document for a twitter thread but twitter sucks so I figured I'd post it here instead. Hence the rewordings of terms like 'NFT' to avoid getting noticed by pixelated monkey avatars.)
 
@@ -53,9 +53,16 @@ Another view:
 * 🚀 [left_adjoint on the (ab)use of procedurally generated art for commodity tokens](https://portal.mozz.us/gemini/inconsistentuniverse.space/gemlog/2021-11-21-nftprocgen.gmi) <span class='link_plain'>gemini://inconsistentuniverse.space/gemlog/2021-11-21-nftprocgen.gmi</span>
 
 %
-2022-04-26 2022-04-26
+2022-05-01 Freeze Peach
 
-## 🤬 Fucking Twitter - or rather, fucking Elon
+## Freeze Peach [rant]
+
+If you call yourself a "free speech absolutist" in 2022, you're either hopelessly naïve or a dedicated swallower of fascism.
+
+%
+2022-04-26 Fucking Twitter - or rather, fucking Elon
+
+## Fucking Twitter - or rather, fucking Elon [rant]
 
 This is depressing as heck. I am convinced Twitter will become even worse, very quickly. The global right is stirring and will use Twitter in its war against decency.
 
@@ -64,9 +71,9 @@ I'm probably not gonna be directly affected because I'm a cis white male, but I 
 Even if people move on to somewhere else, a sort of meta-community will be fractured, and the bad guys have won another battle.
 
 %
-2021-12-19 2021-12-19
+2021-12-19 Fuck web3
 
-## 🤬 Fuck web3
+## Fuck web3 [rant]
 
 * [originally a comment on Lobste.rs](https://lobste.rs/s/wcggoi/web3_fraud#c_evyb4e)
 
@@ -75,9 +82,9 @@ What pisses me off about the people promoting “web3” is that they assume the
 There is nothing in the debased vision that these people present that attracts me - and I say that as someone who is fully prepared to pay money for goods and services online. I refuse to pay inflated prices to greedy middlemen who will just clear-cut field after field of creative endeavor to pump their useless tokens.
 
 %
-2022-02-04 2022-02-04
+2022-02-04 GDPR, privacy, ad-blocking
 
-## 🤬 GDPR, privacy, ad-blocking
+## GDPR, privacy, ad-blocking [rant]
 
 * [Inspired by this comment thread](https://lobste.rs/s/wnkloa/gdpr_enforcer_rules_iab_europe_s_consent#c_ynvg5s)
 
@@ -88,9 +95,9 @@ Expecting online privacy exploitation to be solved by installing browser extensi
 The GDPR is far from perfect. But it's still distressing to see "privacy activists" in the USA dismiss it because of their built-in aversion to any sort of collective action directed by a state. 
 
 %
-2021-10-31 2021-10-31
+2021-10-31 GNU's not Unix, and that's the point
 
-## 🤬 GNU's not Unix, and that's the point
+## GNU's not Unix, and that's the point [rant]
 
 A weird inversion has taken place as Linux has become by far the most deployed kernel in the world: its success helped by using the GNU toolchain and software, it is now derided for not following "Unix standards".
 
@@ -107,18 +114,18 @@ Linux has been succesful beyond anyone's wildest dreams in the 1990s - but it ha
 The people online now telling me snidely to use musl instead of glibc, or some hipster shell instead of `bash`, or who whine about how autotools has to support PA-RISC, or who seem to think POSIX is a goal to strive for rather than an accident of corporate history, are standing on the shoulders of giants. But instead of being grateful they're complaining the giants are coding it wrong. 
 
 %
-2021-11-06 2021-11-06
+2021-11-06 Humanity cannot be free until...
 
-## 🤬 Humanity cannot be free until... 
+## Humanity cannot be free until... [rant]
 
 ### the last billionaire is hung from a lampost in the entrails of the last techbro
 
 (this would probably get me booted from twitter, because techbros are terrible)
 
 %
-2022-01-11 2022-01-11
+2022-01-11 IRC vs its enemies
 
-## 🤬 IRC vs its enemies
+## IRC vs its enemies [rant]
 
 Services like Slack, Discord and Teams have proven IRC right - group chat is an important collaboration tool. IRC apologists constantly complain that these services are winning despite IRC being better because it's "open" and "decentralized".
 
@@ -136,9 +143,9 @@ But it never appeared. In fact, during the Freenode debacle, the FSF explicitely
 The fact is that the IRC ecosystem is immature, inconsistent, hard to manage, and not really business-friendly. And that's fine. But it also means that Slack et al solved a problem IRC wasn't interested in solving. 
 
 %
-2021-11-10 2021-11-10
+2021-11-10 - Incorrect Quotation
 
-## 🤬 Incorrect Quotation
+## Incorrect Quotation [rant]
 
 RMS would like you to know that the infamous "GNU/Linux" copy-pasta attributed to him is incorrect.
 
@@ -173,9 +180,9 @@ Also this backhanded compliment:
 I'd just like to interject for a moment: GNU/Hurd is never gonna be finished. Linux won. Get over it.
 
 %
-2022-01-28 2022-01-28
+2022-01-28 substack is a toxic brand
 
-## 🤬 substack is a toxic brand
+## substack is a toxic brand [rant]
 
 This post on Wonkette articulates a lot of what I've been seeing regarding Substack lately
 
@@ -192,5 +199,6 @@ Sadly user 'ykevinator2 got flagged to death for this comment but I think it's q
 > I still don't know what substack is but it seems like a place for intelligent nutcases to explain why they're victims.
 
 * [flagged dead comment on HN](https://news.ycombinator.com/item?id=30437556)
+
 
 %

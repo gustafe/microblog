@@ -46,6 +46,7 @@ my $archive_footer;
 my $count = 0;
 for my $day (@$days) {
     my $time = Time::Piece->strptime( $day->{date}, "%Y-%m-%d" );
+    next if ( $time->ymd gt $now->ymd );
     $day->{year} = $time->year;
     $day->{mon} = $time->mon;
     $day->{mday} = $time->mday;

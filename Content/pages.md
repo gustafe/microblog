@@ -16,4 +16,6 @@ Microblog for [gerikson.com](https://gerikson.com/).
 - [Atom](/m/feed.atom)
 - [JSON](/m/feed.json)
 
+Sorry, this is an RSS-free zone. 
+
 %
