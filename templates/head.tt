@@ -7,9 +7,13 @@
     <link rel=alternate title="[% meta.title -%] Atom feed" type=application/atom+xml href="/m/feed.atom">
     <title>[% meta.title %]</title>
     <style>
+      
     body {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 40px auto;
+    max-width: 800px;
+    line-height: 1.4;
+    font-size: 18px;
+    padding: 0 10px;
     
     background-color: #fdf6e3; 
     }
