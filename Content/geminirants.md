@@ -173,7 +173,7 @@ Also this backhanded compliment:
 I'd just like to interject for a moment: GNU/Hurd is never gonna be finished. Linux won. Get over it.
 
 %
-2022-01-28 2022-01-28
+2022-01-27 2022-01-27
 
 ## 🤬 substack is a toxic brand
 
