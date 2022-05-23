@@ -316,7 +316,7 @@ ENTRY:
         die 'No date or page specified for first tumblelog entry';
     }
 
-    @days  = sort { $b->{date} cmp $a->{date} } @days;
+    @days  = sort { $b->{date} cmp $a->{date} || $a->{title} cmp $b->{title}} @days;
     @pages = sort { $b->{date} cmp $a->{date} } @pages;
 
     return ( \@days, \@pages );
