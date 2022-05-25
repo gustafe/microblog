@@ -15,6 +15,8 @@ use List::Util qw/min max/;
 use JSON::XS;
 use Encode;
 use XML::Atom::SimpleFeed;
+use Unicode::Normalize;
+use Text::Unidecode;
 use utf8;
 use open qw/ :std :encoding(utf8) /;
 
@@ -112,8 +114,9 @@ for my $day ( @{$frontpage} ) {
     for my $art ( @{ $day->{articles} } ) {
         my $url = $config{blog_url}
             . sprintf( '/%04d/%02d/index.html#%s',
-            $day->{year}, $day->{mon}, $art->{id} );
-        my ( $date_title, $seq ) = split( /\_/, $art->{id} );
+		       $day->{year}, $day->{mon}, $art->{id} );
+	my @post_meta = split( /\_/, $art->{id});
+        my ( $date_title, $seq ) = ($post_meta[0], $post_meta[-1]);
         my $publish_date = sprintf(
             '%sT%02d:%02d:%02d+00:00',
             $day->{date}, $day->{year} % 24, $day->{mon} % 60,
@@ -234,8 +237,11 @@ sub convert_articles_to_html {
 	    my $html = $ast->render_html(OPT_UNSAFE);  # support (inline) HTML
             push @articles,
                 {
-                html => $html,
-                id   => $item->{date} . sprintf( "_%02d", $seq )
+		 html => $html,
+		 
+		 id   =>
+		 $item->{date} .
+		 sprintf( "_%s_%02d", $item->{slug} ? $item->{slug} : 'p',$seq )
                 };
             $seq++;
         }
@@ -282,7 +288,8 @@ ENTRY:
                 {
                 date     => $1,
                 title    => $title,
-                articles => [$3],
+		 articles => [$3],
+		 slug => slugify_unidecode($title),
                 };
             $state = 'date-title';
             next ENTRY;
@@ -337,4 +344,26 @@ sub render_page {
     my ( $template, $payload, $output ) = @_;
     $tt->process( $template, $payload, $output, { binmode => ':utf8' } )
         || die $tt->error;
+}
+
+sub slugify_unidecode($) {
+    # https://stackoverflow.com/questions/4009281/how-can-i-generate-url-slugs-in-perl
+    my ($input) = @_;
+    if ($input =~ /^tweets/) {
+	return 'tweets'
+    }
+    if ($input =~ /^observations/) {
+	 return 'observations'
+     }
+    if ($input =~ /(\S+), \d{2} \S+ \d{4}/) {
+	return lc($1)
+    }
+    $input = NFC($input);          # Normalize (recompose) the Unicode string
+    $input = unidecode($input);    # Convert non-ASCII characters to closest equivalents
+    $input =~ s/[^\w\s-]//g;       # Remove all characters that are not word characters (includes _), spaces, or hyphens
+    $input =~ s/^\s+|\s+$//g;      # Trim whitespace from both ends
+    $input = lc($input);
+    $input =~ s/[-\s]+/_/g;        # Replace all occurrences of spaces and hyphens with a single underscore
+
+    return $input;
 }

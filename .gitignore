@@ -4,3 +4,6 @@
 /content.in
 Content/all
 /Drafts/*
+/log.sh
+/log.txt
+/slugify.pl

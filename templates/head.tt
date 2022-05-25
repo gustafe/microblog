@@ -17,6 +17,9 @@
     
     background-color: #fdf6e3; 
     }
+    pre {
+	font-size: 14px;
+    }
     h3 {
     clear: both;
     font-size: 1.3em
@@ -25,6 +28,8 @@
     clear: both;
     font-size: 1em;
     text-align: center;
+    font-family: helvetica, arial, sans-serif;  
+
     }
     h2.date a {
     text-decoration: none;
