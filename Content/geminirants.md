@@ -1,4 +1,4 @@
-2021-10-19 2021-10-19
+2021-10-19 tll
 
 ## 🤬 Three letter language
 
@@ -7,7 +7,7 @@ Zig - C that compiles to C
 Elm - authoritarian JavaScript  
 
 %
-2021-11-19 2021-11-19
+2021-11-19 nfuckingtee
 
 ## 🤬 ennefftee
 
@@ -53,7 +53,7 @@ Another view:
 * 🚀 [left_adjoint on the (ab)use of procedurally generated art for commodity tokens](https://portal.mozz.us/gemini/inconsistentuniverse.space/gemlog/2021-11-21-nftprocgen.gmi) <span class='link_plain'>gemini://inconsistentuniverse.space/gemlog/2021-11-21-nftprocgen.gmi</span>
 
 %
-2022-04-26 2022-04-26
+2022-04-26 twelon
 
 ## 🤬 Fucking Twitter - or rather, fucking Elon
 
@@ -64,7 +64,7 @@ I'm probably not gonna be directly affected because I'm a cis white male, but I 
 Even if people move on to somewhere else, a sort of meta-community will be fractured, and the bad guys have won another battle.
 
 %
-2021-12-19 2021-12-19
+2021-12-19 web3sux
 
 ## 🤬 Fuck web3
 
@@ -75,7 +75,7 @@ What pisses me off about the people promoting “web3” is that they assume the
 There is nothing in the debased vision that these people present that attracts me - and I say that as someone who is fully prepared to pay money for goods and services online. I refuse to pay inflated prices to greedy middlemen who will just clear-cut field after field of creative endeavor to pump their useless tokens.
 
 %
-2022-02-04 2022-02-04
+2022-02-04 gdpr
 
 ## 🤬 GDPR, privacy, ad-blocking
 
@@ -88,7 +88,7 @@ Expecting online privacy exploitation to be solved by installing browser extensi
 The GDPR is far from perfect. But it's still distressing to see "privacy activists" in the USA dismiss it because of their built-in aversion to any sort of collective action directed by a state. 
 
 %
-2021-10-31 2021-10-31
+2021-10-31 gnu
 
 ## 🤬 GNU's not Unix, and that's the point
 
@@ -107,7 +107,7 @@ Linux has been succesful beyond anyone's wildest dreams in the 1990s - but it ha
 The people online now telling me snidely to use musl instead of glibc, or some hipster shell instead of `bash`, or who whine about how autotools has to support PA-RISC, or who seem to think POSIX is a goal to strive for rather than an accident of corporate history, are standing on the shoulders of giants. But instead of being grateful they're complaining the giants are coding it wrong. 
 
 %
-2021-11-06 2021-11-06
+2021-11-06 revolution
 
 ## 🤬 Humanity cannot be free until... 
 
@@ -116,7 +116,7 @@ The people online now telling me snidely to use musl instead of glibc, or some h
 (this would probably get me booted from twitter, because techbros are terrible)
 
 %
-2022-01-11 2022-01-11
+2022-01-11 irc
 
 ## 🤬 IRC vs its enemies
 
@@ -136,7 +136,7 @@ But it never appeared. In fact, during the Freenode debacle, the FSF explicitely
 The fact is that the IRC ecosystem is immature, inconsistent, hard to manage, and not really business-friendly. And that's fine. But it also means that Slack et al solved a problem IRC wasn't interested in solving. 
 
 %
-2021-11-10 2021-11-10
+2021-11-10 rmsquote
 
 ## 🤬 Incorrect Quotation
 
@@ -173,7 +173,7 @@ Also this backhanded compliment:
 I'd just like to interject for a moment: GNU/Hurd is never gonna be finished. Linux won. Get over it.
 
 %
-2022-01-27 2022-01-27
+2022-01-27 substack sux
 
 ## 🤬 substack is a toxic brand
 

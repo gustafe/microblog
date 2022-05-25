@@ -1,6 +1,6 @@
 2022-05-19 Travel notes, Nuremberg May 2022
 
-### 09:30
+#### 09:30
 
 Paranoid about missing the flight so I’m catching a train fully 3.5 hours before departure.
 
@@ -16,7 +16,7 @@ I’m going by pendel because it’s more accessible and a bit cheaper. The tran
 
 %
 
-### 10:30
+#### 10:30
 
 The queue through security is even more depressing than I remember. 
 
@@ -30,7 +30,7 @@ A huge SAS flight boarded and peace has descended.
 
 %
 
-### 11:15 
+#### 11:15 
 
 Damnit I'm hungry, gonna grab a meal now.
 
@@ -38,7 +38,7 @@ Airport fast food eating is its own special brand of alieniation.
 
 %
 
-### 14:15
+#### 14:15
 
 In flight. Forgot to load the phone with offline media so am actually reading a book for once. I don’t know why the Books app has “goals”. Since when did reading become gamified? Maybe it’s Goodreads. 
 
