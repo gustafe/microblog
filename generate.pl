@@ -5,23 +5,28 @@
 # https://github.com/john-bokma/tumblelog
 
 use Modern::Perl '2015';
-use Path::Tiny;
 use CommonMark qw(:opt :node :event);
 use Data::Dump qw/dump/;
-use Template;
-use FindBin qw/$Bin/;
-use Time::Piece;
-use List::Util qw/min max/;
-use JSON::XS;
 use Encode;
-use XML::Atom::SimpleFeed;
-use Unicode::Normalize;
+use FindBin qw/$Bin/;
+use JSON::XS;
+use List::Util qw/min max/;
+use Path::Tiny;
+use Template;
 use Text::Unidecode;
+use Time::HiRes qw/gettimeofday tv_interval/;
+use Time::Piece;
+use Unicode::Normalize;
+use XML::Atom::SimpleFeed;
+
 use utf8;
 use open qw/ :std :encoding(utf8) /;
-
 binmode( STDOUT, ":encoding(UTF-8)" );
+
+my $start_time = [gettimeofday];
+
 my $debug         = 0;
+
 my $days_to_show  = 17;
 my $now           = gmtime;
 my $RE_DATE_TITLE = qr/^(\d{4}-\d{2}-\d{2})(.*?)\n(.*)/s;
@@ -45,20 +50,21 @@ convert_articles_to_html($pages);
 my $frontpage;
 my $archive;
 my $archive_footer;
-my $count = 0;
+my $day_count = 0;
+my $article_count = 0;
 for my $day (@$days) {
     my $time = Time::Piece->strptime( $day->{date}, "%Y-%m-%d" );
     next if ( $time->ymd gt $now->ymd );
     $day->{year} = $time->year;
     $day->{mon} = $time->mon;
     $day->{mday} = $time->mday;
-    if ( $count < $days_to_show ) {
+    if ( $day_count < $days_to_show ) {
         push @$frontpage, $day;
     }
     push @{ $archive->{ $time->year }{ $time->mon } }, $day;
     $archive_footer->{ $time->year }{ $time->mon }++;
-
-    $count++;
+    $article_count += scalar @{$day->{articles}};
+    $day_count++;
 }
 
 my $tt = Template->new(
@@ -66,16 +72,17 @@ my $tt = Template->new(
 
 my %data = (
     meta => {
-        title  => $config{blog_name},
+#        title  => $config{blog_name},
         author => $config{blog_author},
         site   => $config{blog_url},
         now    => $now->datetime . '+00:00',
     },
-    days           => $frontpage,
-    archive_footer => $archive_footer,
+  #  days           => $frontpage,
+	    archive_footer => $archive_footer,
+	    year_range=>{min=>min(keys %$archive), max=>max(keys %$archive)},
+
 );
 
-render_page( 'microblog.tt', \%data, $config{output_path} . '/index.html' );
 
 # JSON feed
 
@@ -175,6 +182,14 @@ if (@$pages) {
             sprintf( "%s/%s.html", $config{output_path}, $page->{name} ) );
     }
 }
+# front page
+$data{meta}->{title} = $config{blog_name};
+#$data{meta}->{now} = $now->datetime . '+00:00';
+$data{days} = $frontpage;
+$data{meta}->{rendertime} = sec_to_hms( tv_interval($start_time) );
+$data{meta}->{day_count}=$day_count;
+  $data{meta}->{article_count}=$article_count;
+render_page( 'microblog.tt', \%data, $config{output_path} . '/index.html' );
 ### SUBS
 
 sub rewrite_ast {
@@ -366,4 +381,10 @@ sub slugify_unidecode($) {
     $input =~ s/[-\s]+/_/g;        # Replace all occurrences of spaces and hyphens with a single underscore
 
     return $input;
+}
+
+sub sec_to_hms {  
+    my ($s) = @_;
+    return sprintf("%02dh%02dm%02ds (%.3f ms)",
+    int( $s / ( 60 * 60 ) ), ( $s / 60 ) % 60, $s % 60, $s * 1000 );
 }

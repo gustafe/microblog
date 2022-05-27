@@ -31,7 +31,14 @@
   [% END %] 
     </ul>
     <hr />
-<p>Generated on: <em>[% meta.now -%]</em></p>
-<p>Copyright &copy; Gustaf Erikson 2004-2022. All rights reserved.</p>    
+<p>Generated on: <em>[% meta.now -%]</em><br/>
+[% IF meta.rendertime -%]
+Render time: <em>[% meta.rendertime -%]</em><br/>
+[% END -%]
+[% IF meta.day_count AND meta.article_count -%]
+Days: [% meta.day_count %]. Articles: [% meta.article_count -%]<br/>
+[% END -%]
+</p>
+<p>Copyright &copy; Gustaf Erikson [% year_range.min -%]&ndash;[% year_range.max -%]. All rights reserved.</p>    
   </body>
   </html>
