@@ -25,7 +25,7 @@ binmode( STDOUT, ":encoding(UTF-8)" );
 
 my $start_time = [gettimeofday];
 
-my $debug         = 0;
+my $debug = 0;
 
 my $days_to_show  = 17;
 my $now           = gmtime;
@@ -41,48 +41,49 @@ $config{output_path} = '/home/gustaf/public_html/m';
 $config{blog_url}    = 'https://gerikson.com/m';
 $config{blog_author} = 'Gustaf Erikson';
 
+# read data from input, and convert to HTML
+
 my ( $days, $pages )
     = collect_days_and_pages( read_entries( $config{filename} ) );
 
 convert_articles_to_html($days);
 convert_articles_to_html($pages);
 
+# gather all data into year/month pages, and save the newest ones for the frontpage and feeds
+
 my $frontpage;
 my $archive;
 my $archive_footer;
-my $day_count = 0;
+my $day_count     = 0;
 my $article_count = 0;
 for my $day (@$days) {
     my $time = Time::Piece->strptime( $day->{date}, "%Y-%m-%d" );
     next if ( $time->ymd gt $now->ymd );
     $day->{year} = $time->year;
-    $day->{mon} = $time->mon;
+    $day->{mon}  = $time->mon;
     $day->{mday} = $time->mday;
     if ( $day_count < $days_to_show ) {
         push @$frontpage, $day;
     }
     push @{ $archive->{ $time->year }{ $time->mon } }, $day;
     $archive_footer->{ $time->year }{ $time->mon }++;
-    $article_count += scalar @{$day->{articles}};
+    $article_count += scalar @{ $day->{articles} };
     $day_count++;
 }
 
-my $tt = Template->new(
-    { INCLUDE_PATH => "$Bin/templates", ENCODING => 'UTF-8' } );
-
 my %data = (
     meta => {
-#        title  => $config{blog_name},
         author => $config{blog_author},
         site   => $config{blog_url},
         now    => $now->datetime . '+00:00',
     },
-  #  days           => $frontpage,
-	    archive_footer => $archive_footer,
-	    year_range=>{min=>min(keys %$archive), max=>max(keys %$archive)},
+    archive_footer => $archive_footer,
+    year_range =>
+        { min => min( keys %$archive ), max => max( keys %$archive ) },
 
 );
 
+# create feeds, and load them with frontpage data
 
 # JSON feed
 
@@ -121,12 +122,14 @@ for my $day ( @{$frontpage} ) {
     for my $art ( @{ $day->{articles} } ) {
         my $url = $config{blog_url}
             . sprintf( '/%04d/%02d/index.html#%s',
-		       $day->{year}, $day->{mon}, $art->{id} );
-	my @post_meta = split( /\_/, $art->{id});
-        my ( $date_title, $seq ) = ($post_meta[0], $post_meta[-1]);
+            $day->{year}, $day->{mon}, $art->{id} );
+        my @post_meta = split( /\_/, $art->{id} );
+        my ( $date_title, $seq ) = ( $post_meta[0], $post_meta[-1] );
         my $publish_date = sprintf(
             '%sT%02d:%02d:%02d+00:00',
-            $day->{date}, $day->{year} % 24, $day->{mon} % 60,
+            $day->{date},
+            $day->{year} % 24,
+            $day->{mon} % 60,
             ( $day->{mday} + $seq ) % 60
         );
         push @{ $json_feed->{items} },
@@ -138,25 +141,36 @@ for my $day ( @{$frontpage} ) {
             };
 
         $atom_feed->add_entry(
-            title => $date_title, id => $url,
+            title => $date_title,
+            id    => $url,
             link => { rel => 'alternate', href => $url, type => 'text/html' },
-            updated => $publish_date, content => $art->{html},
+            updated => $publish_date,
+            content => $art->{html},
         );
     }
 }
 
+my $tt = Template->new(
+    { INCLUDE_PATH => "$Bin/templates", ENCODING => 'UTF-8' } );
+
 my $feed_json = encode_json($json_feed);
 utf8::decode($feed_json);
-render_page( 'feed.tt', { content => $feed_json },
-    $config{output_path} . '/feed.json' );
+render_page(
+    'feed.tt',
+    { content => $feed_json },
+    $config{output_path} . '/feed.json'
+);
 my $xml = $atom_feed->as_string();
 utf8::decode($xml);
-render_page( 'feed.tt', { content => $xml },
-    $config{output_path} . '/feed.atom' );
+render_page(
+    'feed.tt',
+    { content => $xml },
+    $config{output_path} . '/feed.atom'
+);
 
 exit 0 if $debug;
 
-# archives
+# create year/month archive pages, and publish them
 
 for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
     for my $mon ( 1 .. 12 ) {
@@ -164,14 +178,19 @@ for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
             $data{meta}{title} = sprintf( "%s - archive for %04d-%02d",
                 $config{blog_name}, $year, $mon );
             $data{days} = $archive->{$year}{$mon};
-            render_page( 'microblog.tt', \%data,
-                sprintf( "%s/%04d/%02d/index.html",
-			 $config{output_path}, $year, $mon ));
+            render_page(
+                'microblog.tt',
+                \%data,
+                sprintf(
+                    "%s/%04d/%02d/index.html",
+                    $config{output_path}, $year, $mon
+                )
+            );
         }
     }
 }
 
-### pages
+### create and publish pages
 
 if (@$pages) {
     for my $page (@$pages) {
@@ -182,13 +201,14 @@ if (@$pages) {
             sprintf( "%s/%s.html", $config{output_path}, $page->{name} ) );
     }
 }
-# front page
+
+# create and publish front page (index.html)
 $data{meta}->{title} = $config{blog_name};
-#$data{meta}->{now} = $now->datetime . '+00:00';
 $data{days} = $frontpage;
-$data{meta}->{rendertime} = sec_to_hms( tv_interval($start_time) );
-$data{meta}->{day_count}=$day_count;
-  $data{meta}->{article_count}=$article_count;
+
+$data{meta}->{day_count}     = $day_count;
+$data{meta}->{article_count} = $article_count;
+$data{meta}->{rendertime}    = sec_to_hms( tv_interval($start_time) );
 render_page( 'microblog.tt', \%data, $config{output_path} . '/index.html' );
 ### SUBS
 
@@ -247,17 +267,16 @@ sub convert_articles_to_html {
         my @articles;
         my $seq = 1;
         for my $article ( @{ $item->{articles} } ) {
-	    my $ast   = CommonMark->parse(string=>$article,smart=>1);
+            my $ast   = CommonMark->parse( string => $article, smart => 1 );
             my $nodes = rewrite_ast($ast);
-	    my $html = $ast->render_html(OPT_UNSAFE);  # support (inline) HTML
-            push @articles,
-                {
-		 html => $html,
-		 
-		 id   =>
-		 $item->{date} .
-		 sprintf( "_%s_%02d", $item->{slug} ? $item->{slug} : 'p',$seq )
-                };
+            my $html = $ast->render_html(OPT_UNSAFE);  # support (inline) HTML
+            push @articles, {
+                html => $html,
+
+                id => $item->{date}
+                    . sprintf( "_%s_%02d",
+                    $item->{slug} ? $item->{slug} : 'p', $seq )
+            };
             $seq++;
         }
         $item->{articles} = \@articles;
@@ -303,8 +322,8 @@ ENTRY:
                 {
                 date     => $1,
                 title    => $title,
-		 articles => [$3],
-		 slug => slugify_unidecode($title),
+                articles => [$3],
+                slug     => slugify_unidecode($title),
                 };
             $state = 'date-title';
             next ENTRY;
@@ -338,7 +357,8 @@ ENTRY:
         die 'No date or page specified for first tumblelog entry';
     }
 
-    @days  = sort { $b->{date} cmp $a->{date} || $a->{title} cmp $b->{title}} @days;
+    @days = sort { $b->{date} cmp $a->{date} || $a->{title} cmp $b->{title} }
+        @days;
     @pages = sort { $b->{date} cmp $a->{date} } @pages;
 
     return ( \@days, \@pages );
@@ -362,29 +382,37 @@ sub render_page {
 }
 
 sub slugify_unidecode($) {
-    # https://stackoverflow.com/questions/4009281/how-can-i-generate-url-slugs-in-perl
+
+# https://stackoverflow.com/questions/4009281/how-can-i-generate-url-slugs-in-perl
     my ($input) = @_;
-    if ($input =~ /^tweets/) {
-	return 'tweets'
+    if ( $input =~ /^tweets/ ) {
+        return 'tweets';
     }
-    if ($input =~ /^observations/) {
-	 return 'observations'
-     }
-    if ($input =~ /(\S+), \d{2} \S+ \d{4}/) {
-	return lc($1)
+    if ( $input =~ /^observations/ ) {
+        return 'observations';
     }
-    $input = NFC($input);          # Normalize (recompose) the Unicode string
-    $input = unidecode($input);    # Convert non-ASCII characters to closest equivalents
-    $input =~ s/[^\w\s-]//g;       # Remove all characters that are not word characters (includes _), spaces, or hyphens
-    $input =~ s/^\s+|\s+$//g;      # Trim whitespace from both ends
+    if ( $input =~ /(\S+), \d{2} \S+ \d{4}/ ) {
+        return lc($1);
+    }
+    $input = NFC($input);        # Normalize (recompose) the Unicode string
+    $input = unidecode($input)
+        ;    # Convert non-ASCII characters to closest equivalents
+    $input =~ s/[^\w\s-]//g
+        ; # Remove all characters that are not word characters (includes _), spaces, or hyphens
+    $input =~ s/^\s+|\s+$//g;    # Trim whitespace from both ends
     $input = lc($input);
-    $input =~ s/[-\s]+/_/g;        # Replace all occurrences of spaces and hyphens with a single underscore
+    $input =~ s/[-\s]+/_/g
+        ; # Replace all occurrences of spaces and hyphens with a single underscore
 
     return $input;
 }
 
-sub sec_to_hms {  
+sub sec_to_hms {
     my ($s) = @_;
-    return sprintf("%02dh%02dm%02ds (%.3f ms)",
-    int( $s / ( 60 * 60 ) ), ( $s / 60 ) % 60, $s % 60, $s * 1000 );
+    return sprintf(
+        "%02dh%02dm%02ds (%.3f ms)",
+        int( $s / ( 60 * 60 ) ),
+        ( $s / 60 ) % 60,
+        $s % 60, $s * 1000
+    );
 }
