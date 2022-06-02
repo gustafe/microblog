@@ -9,6 +9,8 @@ Microblog for [gerikson.com](https://gerikson.com/).
 
 [Announce](/m/2022/04/index.html#2022-04-28_thursday_01).
 
+Source: <https://github.com/gustafe/microblog>
+
 %
 @subscribe[subscribe] 2022-05-01! Subscribe
 ## Subscribe
