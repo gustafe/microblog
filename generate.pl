@@ -27,7 +27,7 @@ my $start_time = [gettimeofday];
 
 my $debug = 0;
 
-my $days_to_show  = 17;
+my $days_to_show  = 7;
 my $now           = gmtime;
 my $RE_DATE_TITLE = qr/^(\d{4}-\d{2}-\d{2})(.*?)\n(.*)/s;
 my $RE_AT_PAGE_TITLE
@@ -141,7 +141,7 @@ for my $day ( @{$frontpage} ) {
             };
 
         $atom_feed->add_entry(
-            title => $date_title,
+            title => $art->{id},
             id    => $url,
             link => { rel => 'alternate', href => $url, type => 'text/html' },
             updated => $publish_date,
