@@ -27,7 +27,7 @@ my $start_time = [gettimeofday];
 
 my $debug = 0;
 
-my $days_to_show  = 7;
+my $days_to_show  = 10;
 my $now           = gmtime;
 my $RE_DATE_TITLE = qr/^(\d{4}-\d{2}-\d{2})(.*?)\n(.*)/s;
 my $RE_AT_PAGE_TITLE
