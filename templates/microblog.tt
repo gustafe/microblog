@@ -17,20 +17,29 @@
     [% END %]
 
 
-    <h3 id="archive">Archive</h3>
-    <ul>
-  [% FOREACH year IN archive_footer.keys.sort.reverse %]
-  <li> [% year -%] 
-    [% FOREACH mon IN [1,2,3,4,5,6,7,8,9,10,11,12] %]
-    [% IF archive_footer.$year.$mon   %] <a href="[% meta.site -%]/[% archive_link(year, mon) -%]">[% leading_space_mon(mon) -%]</a>&nbsp;
-    [% ELSE %] [% leading_space_mon(mon) -%]&nbsp;
-    [% END %] 
-    [% END %]
-    </li>
+<h3 id="archive">Archive</h3>
+<table>
+    <tr>
+    <th>&nbsp;</th>
+    <th> Jan </th><th> Feb </th><th> Mar </th>
+    <th> Apr </th><th> May </th><th> Jun </th>
+    <th> Jul </th><th> Aug </th><th> Sep </th>
+    <th> Oct </th><th> Nov </th><th> Dec </th>
+    </tr>
+    [% FOREACH year IN archive_footer.keys.sort.reverse -%]
+    <tr><td align="right"> [% year -%] </td>
+    [% FOREACH mon IN [1,2,3,4,5,6,7,8,9,10,11,12] -%]
+    [% IF archive_footer.$year.$mon   %]
+       <td align="right"> <a href="[% meta.site -%]/[% archive_link(year, mon) -%]">[% archive_footer.$year.$mon -%] </a></td>
+    [% ELSE %]<td align="center"> &mdash; </td>
+    [% END -%]
+    [% END -%]
+    </tr>
+    [% END -%]
+</table>
     
-  [% END %] 
-    </ul>
-    <hr />
+<hr />
+
 <p>Generated on: <em>[% meta.now -%]</em><br/>
 [% IF meta.rendertime -%]
 Render time: <em>[% meta.rendertime -%]</em><br/>
