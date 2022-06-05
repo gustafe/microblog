@@ -66,7 +66,7 @@ for my $day (@$days) {
         push @$frontpage, $day;
     }
     push @{ $archive->{ $time->year }{ $time->mon } }, $day;
-    $archive_footer->{ $time->year }{ $time->mon }++;
+    $archive_footer->{ $time->year }{ $time->mon } += scalar @{$day->{articles}};
     $article_count += scalar @{ $day->{articles} };
     $day_count++;
 }
@@ -409,10 +409,10 @@ sub slugify_unidecode($) {
 
 sub sec_to_hms {
     my ($s) = @_;
+#    my $milliseconds = ($s - int $s) * 1000;
     return sprintf(
-        "%02dh%02dm%02ds (%.3f ms)",
+        "%02dh%02dm%02.1fs",
         int( $s / ( 60 * 60 ) ),
         ( $s / 60 ) % 60,
-        $s % 60, $s * 1000
-    );
+        $s  );
 }
