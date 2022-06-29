@@ -7,6 +7,7 @@
 use Modern::Perl '2015';
 use CommonMark qw(:opt :node :event);
 use Data::Dump qw/dump/;
+use Digest::MD5 qw/md5_hex/;
 use Encode;
 use FindBin qw/$Bin/;
 use JSON::XS;
@@ -124,28 +125,34 @@ for my $day ( @{$frontpage} ) {
             . sprintf( '/%04d/%02d/index.html#%s',
             $day->{year}, $day->{mon}, $art->{id} );
         my @post_meta = split( /\_/, $art->{id} );
+	my $content = $art->{html};
+
+	# generate a "minute" for the timestamp by grabbing the last
+	# hex digit from the MD5 hash and modding it by 60
+	my $digest_minute = hex(substr(md5_hex(encode_utf8( $content)),-2))%60;
+	
         my ( $date_title, $seq ) = ( $post_meta[0], $post_meta[-1] );
         my $publish_date = sprintf(
             '%sT%02d:%02d:%02d+00:00',
             $day->{date},
             $day->{year} % 24,
             $day->{mon} % 60,
-            ( $day->{mday} + $seq ) % 60
+            $digest_minute
         );
         push @{ $json_feed->{items} },
             {
             id             => $art->{id},
             url            => $url,
-            content_html   => $art->{html},
+            content_html   => $content,
             date_published => $publish_date,
             };
 
         $atom_feed->add_entry(
-            title => $art->{id},
+            title => "Entry $seq on $date_title",
             id    => $url,
             link => { rel => 'alternate', href => $url, type => 'text/html' },
             updated => $publish_date,
-            content => $art->{html},
+            content => $content,
         );
     }
 }
