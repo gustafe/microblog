@@ -11,6 +11,8 @@ Microblog for [gerikson.com](https://gerikson.com/).
 
 Source: <https://github.com/gustafe/microblog>
 
+Disclaimer: any views expressed here are my own and do not represent the views of my employer.
+
 %
 @subscribe[subscribe] 2022-05-01! Subscribe
 ## Subscribe
