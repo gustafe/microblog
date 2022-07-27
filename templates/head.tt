@@ -14,11 +14,14 @@
     line-height: 1.4;
     font-size: 1.25em;
     padding: 3em  1em;
-    
     background-color: #fdf6e3; 
     }
     pre {
 	font-size: 1em;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+	font-family: "Century Gothic", "Arial", sans-serif;
     }
     h3 {
     clear: both;
