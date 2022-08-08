@@ -1,0 +1,61 @@
+body {
+margin: auto;
+max-width: 70ch;
+line-height: 1.4;
+font-size: 1.25em;
+padding: 3em  1em;
+background-color: #fdf6e3; 
+}
+pre {
+	font-size: 1em;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: "Century Gothic", "Arial", sans-serif;
+}
+h3 {
+clear: both;
+font-size: 1.3em
+}
+h2.date {
+clear: both;
+font-size: 1em;
+text-align: center;
+font-style: italic;
+
+}
+h2.date a {
+text-decoration: none;
+color: black;
+}
+h2.data a:hover {
+text-decoration: underline;
+}
+article {
+margin-top: 10px;
+margin-right: 10%;
+border-style: none none dotted none ;
+}
+p.permalink {
+text-align: right;
+}
+
+p.permalink a {
+text-decoration: none;
+}
+p.permalink a:hover {
+text-decoration: underline;
+}
+p.twitter-permalink {
+text-align: right;
+}
+
+table {
+	table-layout: fixed;
+}
+th, td {
+	padding: 5px;
+}
+thead th {
+    font-family: "Century Gothic", "Arial", sans-serif;
+}

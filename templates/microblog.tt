@@ -19,13 +19,16 @@
 
 <h3 id="archive">Archive</h3>
 <table>
-    <tr>
+<thead>
+<tr>
     <th>&nbsp;</th>
     <th> Jan </th><th> Feb </th><th> Mar </th>
     <th> Apr </th><th> May </th><th> Jun </th>
     <th> Jul </th><th> Aug </th><th> Sep </th>
     <th> Oct </th><th> Nov </th><th> Dec </th>
     </tr>
+    </thead>
+    <tbody>
     [% FOREACH year IN archive_footer.keys.sort.reverse -%]
     <tr><td align="right"> [% year -%] </td>
     [% FOREACH mon IN [1,2,3,4,5,6,7,8,9,10,11,12] -%]
@@ -36,6 +39,7 @@
     [% END -%]
     </tr>
     [% END -%]
+    </tbody>
 </table>
     
 <hr />

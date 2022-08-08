@@ -5,71 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel=alternate title="[% meta.title -%] Atom feed" type=application/atom+xml href="/m/feed.atom">
-<!--    <link rel=stylesheet href="/m/microblog.css"> -->
+    <link rel=stylesheet href="/m/microblog.css">
     <title>[% meta.title %]</title>
-    <style>
-      
-    body {
-    margin: auto;
-    max-width: 70ch;
-    line-height: 1.4;
-    font-size: 1.25em;
-    padding: 3em  1em;
-    background-color: #fdf6e3; 
-    }
-    pre {
-	font-size: 1em;
-    }
-
-    h1,h2,h3,h4,h5,h6 {
-	font-family: "Century Gothic", "Arial", sans-serif;
-    }
-    h3 {
-    clear: both;
-    font-size: 1.3em
-    }
-    h2.date {
-    clear: both;
-    font-size: 1em;
-    text-align: center;
-    font-style: italic;
-
-    }
-    h2.date a {
-    text-decoration: none;
-    color: black;
-    }
-    h2.data a:hover {
-    text-decoration: underline;
-    }
-    article {
-    margin-top: 10px;
-    margin-right: 10%;
-    border-style: none none dotted none ;
-    }
-    p.permalink {
-    text-align: right;
-    }
-    
-    p.permalink a {
-    text-decoration: none;
-    }
-    p.permalink a:hover {
-    text-decoration: underline;
-    }
-    p.twitter-permalink {
-    text-align: right;
-    }
-
-    table {
-	table-layout: fixed;
-    }
-    th, td {
-	padding: 5px;
-    }
-    thead th {
-		font-family: "Century Gothic", "Arial", sans-serif;
-    }
-    </style>
     </head>
   <body>
