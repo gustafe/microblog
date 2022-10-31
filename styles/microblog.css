@@ -20,8 +20,9 @@ font-size: 1.3em
 h2.date {
 clear: both;
 font-size: 1em;
-text-align: center;
+text-align: right;
 font-style: italic;
+margin-right: 10%;
 
 }
 h2.date a {
@@ -58,4 +59,24 @@ th, td {
 }
 thead th {
     font-family: "Century Gothic", "Arial", sans-serif;
+}
+
+
+blockquote {
+  background: #eee8d5;
+  border-left: 10px solid #93a1a1;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019"; 
+}
+blockquote:before {
+  color: #93a1a1;
+/*  content: open-quote; */
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
 }
