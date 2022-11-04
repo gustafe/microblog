@@ -127,17 +127,17 @@ for my $day ( @{$frontpage} ) {
         my @post_meta = split( /\_/, $art->{id} );
 	my $content = $art->{html};
 
-	# generate a "minute" for the timestamp by grabbing the last
+	# generate a "second" for the timestamp by grabbing the last
 	# hex digit from the MD5 hash and modding it by 60
-	my $digest_minute = hex(substr(md5_hex(encode_utf8( $content)),-2))%60;
+	my $digest_sec = hex(substr(md5_hex(encode_utf8( $content)),-2))%60;
 	
         my ( $date_title, $seq ) = ( $post_meta[0], $post_meta[-1] );
         my $publish_date = sprintf(
             '%sT%02d:%02d:%02d+00:00',
             $day->{date},
             $day->{year} % 24,
-            $day->{mon} % 60,
-            $digest_minute
+            ($day->{mon}+$seq) % 60,
+            $digest_sec
         );
         push @{ $json_feed->{items} },
             {
