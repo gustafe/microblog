@@ -213,8 +213,8 @@ if (@$pages) {
 $data{meta}->{title} = $config{blog_name};
 $data{days} = $frontpage;
 
-$data{meta}->{day_count}     = $day_count;
-$data{meta}->{article_count} = $article_count;
+$data{meta}->{day_count}     = commify($day_count);
+$data{meta}->{article_count} = commify($article_count);
 $data{meta}->{rendertime}    = sec_to_hms( tv_interval($start_time) );
 render_page( 'microblog.tt', \%data, $config{output_path} . '/index.html' );
 ### SUBS
@@ -422,4 +422,10 @@ sub sec_to_hms {
         int( $s / ( 60 * 60 ) ),
         ( $s / 60 ) % 60,
         $s  );
+}
+
+sub commify {
+    my $text = reverse $_[0];
+    $text =~ s/(\d\d\d)(?=\d)(?!\d*\.)/$1;F202x\#\&/g;
+    return scalar reverse $text;
 }
