@@ -5,7 +5,7 @@
 Microblog for [gerikson.com](https://gerikson.com/).
 
 - [Main blog](https://gerikson.com/blog/)
-- <gemini://gerikson.com/>
+- <a rel="me" href="https://mastodon.social/@gerikson">@gerikson@Mastodon.social</a>
 
 [Announce](/m/2022/04/index.html#2022-04-28_thursday_01).
 
@@ -21,5 +21,7 @@ Disclaimer: any views expressed here are my own and do not represent the views o
 - [JSON](/m/feed.json)
 
 Sorry, this is an RSS-free zone. 
+
+Please note that the timestamps in the feed are not corresponding to the actual time of post publication. This blog does not have the concept of timestamps other than ordering within a calendar day. 
 
 %
