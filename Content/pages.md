@@ -5,7 +5,13 @@
 Microblog for [gerikson.com](https://gerikson.com/).
 
 - [Main blog](https://gerikson.com/blog/)
-- <a rel="me" href="https://mastodon.social/@gerikson">@gerikson@Mastodon.social</a>
+- [Projects](https://gerikson.com/)
+
+### Emoji tags
+
+- 🔗 - a web link
+- 🐘 - pertains to Mastodon/Fedi
+-  🤬- rant
 
 [Announce](/m/2022/04/index.html#2022-04-28_thursday_01).
 
