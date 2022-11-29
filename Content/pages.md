@@ -5,13 +5,14 @@
 Microblog for [gerikson.com](https://gerikson.com/).
 
 - [Main blog](https://gerikson.com/blog/)
-- [Projects](https://gerikson.com/)
+- [Projects](https://gerikson.com/index.html#projects)
 
 ### Emoji tags
 
 - 🔗 - a web link
 - 🐘 - pertains to Mastodon/Fedi
 -  🤬- rant
+- 🇸🇪 / -Swedish content
 
 ### Comments
 
