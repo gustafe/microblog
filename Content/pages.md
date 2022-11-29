@@ -11,8 +11,8 @@ Microblog for [gerikson.com](https://gerikson.com/).
 
 - 🔗 - a web link
 - 🐘 - pertains to Mastodon/Fedi
--  🤬- rant
-- 🇸🇪 / -Swedish content
+- 🤬 - rant
+- 🇸🇪 - Swedish content
 
 ### Comments
 
