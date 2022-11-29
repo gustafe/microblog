@@ -51,6 +51,11 @@ p.twitter-permalink {
 text-align: right;
 }
 
+p.tagline {
+    font-style: italic;
+    font-size: 0.8em;
+}
+
 table {
 	table-layout: fixed;
 }
