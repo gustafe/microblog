@@ -10,7 +10,8 @@ Microblog for [gerikson.com](https://gerikson.com/).
 ### Emoji tags
 
 - 🔗 - a web link
-- 🐘 - pertains to Mastodon/Fedi
+- 🐘 - pertains to or links to Mastodon/Fedi
+- 🐦 - pertains to or links to Twitter
 - 🤬 - rant
 - 🇸🇪 - Swedish content
 
