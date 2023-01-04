@@ -29,6 +29,10 @@ Source: <https://github.com/gustafe/microblog>
 
 Any views expressed here are my own and do not represent the views of my employer.
 
+### GDPR compliance
+
+This is covered [here](https://gerikson.com/gdpr_privacy_notice.html). 
+
 %
 @subscribe[subscribe] 2022-05-01! Subscribe
 ## Subscribe

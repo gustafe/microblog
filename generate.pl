@@ -41,7 +41,7 @@ my %config = ( filename => $filename, blog_name => 'µblog' );
 $config{output_path} = '/home/gustaf/public_html/m';
 $config{blog_url}    = 'https://gerikson.com/m';
 $config{blog_author} = 'Gustaf Erikson';
-
+$config{debug}=0;
 # read data from input, and convert to HTML
 
 my ( $days, $pages )
@@ -325,6 +325,7 @@ ENTRY:
         if ( $entry =~ $RE_DATE_TITLE ) {
             my $title = strip($2);
             $title ne '' or die "A day must have a title ($1)\n";
+	    say $3 if $config{debug};
             push @days,
                 {
                 date     => $1,
