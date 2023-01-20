@@ -5,7 +5,7 @@
     [% leading_space_mon = format('%2d') %]
     <h1>[% meta.title -%]</h1>
     <p><a href="[% meta.site -%]">home</a> | <a href="#archive">archive</a> | <a href="[% meta.site -%]/about.html">about</a> | <a href="[% meta.site -%]/subscribe.html">subscribe</a></p>
-    <p class="tagline">It's better than real - it's a real imitation.</p>
+    <p class="tagline">It’s better than real – it’s a real imitation.</p>
     [% FOREACH d IN days %]
     <h2 class="date" id=[% d.date -%]_[% d.slug -%]><a href="[% meta.site -%]/[% archive_link(d.year, d.mon) -%]#[% d.date -%]_[% d.slug -%]">[% d.title -%]</a></h2>
     [% FOREACH art IN d.articles %]
