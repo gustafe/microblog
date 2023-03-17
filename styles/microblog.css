@@ -4,15 +4,18 @@ max-width: 70ch;
 line-height: 1.4;
 font-size: 1.25em;
 padding: 3em  1em;
-background-color: #fdf6e3; 
+background-color: #fdf6e3;
+font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+font-variant-numeric: lining-nums;
 }
-pre {
-/*    font-size: 1em;*/
-    font-family: monospace, monospace;
+pre,code {
+    /*    font-size: 1em;*/
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 }
 
 h1,h2,h3,h4,h5,h6 {
-	font-family: "Century Gothic", "Arial", sans-serif;
+    /*	font-family: "Century Gothic", "Arial", sans-serif; */
+    font-family: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
 }
 h3 {
 clear: both;
@@ -30,9 +33,16 @@ h2.date a {
 text-decoration: none;
 color: black;
 }
-h2.data a:hover {
+h2.date a:hover {
 text-decoration: underline;
 }
+h4 a {
+    text-decoration: none;
+}
+h4 a:hover {
+text-decoration: underline;
+}
+    
 article {
 margin-top: 10px;
 margin-right: 10%;
@@ -42,10 +52,10 @@ p.permalink {
 text-align: right;
 }
 
-p.permalink a {
+p.permalink,p.header a {
 text-decoration: none;
 }
-p.permalink a:hover {
+p.permalink,p.header a:hover {
 text-decoration: underline;
 }
 p.twitter-permalink {
@@ -61,10 +71,19 @@ table {
 	table-layout: fixed;
 }
 th, td {
-	padding: 5px;
+    padding: 5px;
+    font-feature-settings: "tnum";
 }
+
+td a {
+    text-decoration: none;
+}
+td a:hover {
+text-decoration: underline;
+}
+
 thead th {
-    font-family: "Century Gothic", "Arial", sans-serif;
+    font-family: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
 }
 
 
