@@ -42,6 +42,7 @@ $config{output_path} = '/home/gustaf/public_html/m';
 $config{blog_url}    = 'https://gerikson.com/m';
 $config{blog_author} = 'Gustaf Erikson';
 $config{debug}=0;
+$config{taglines} = './Content/taglines.fortune';
 # read data from input, and convert to HTML
 
 my ( $days, $pages )
@@ -83,7 +84,11 @@ my %data = (
         { min => min( keys %$archive ), max => max( keys %$archive ) },
 
 );
-
+my $taglines = read_entries ( $config{taglines} );
+my $tl_ast = CommonMark->parse(string=>$taglines->[rand @$taglines],smart=>1);
+my $curr_tagline = $tl_ast->render_html(OPT_UNSAFE);
+$curr_tagline  =~ s/^\<p\>/\<p class=\"tagline\"\>/;
+$data{tagline} = $curr_tagline;
 # create feeds, and load them with frontpage data
 
 # JSON feed

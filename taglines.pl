@@ -30,8 +30,10 @@ my %config = ( taglines => './Content/taglines.fortune');
 
 my $taglines = read_entries( $config{taglines} );
 
-my $entry = $taglines->[rand @$taglines];
+my $ast = CommonMark->parse(string=>$taglines->[rand @$taglines],smart=>1);
 
+my $entry = $ast->render_html(OPT_UNSAFE);
+$entry =~ s/^\<p\>/\<p class=\"tagline\"\>/;
 print $entry;
 sub read_entries {
 
