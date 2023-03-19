@@ -52,12 +52,19 @@ p.permalink {
 text-align: right;
 }
 
-p.permalink,p.header a {
+p.header a {
 text-decoration: none;
 }
-p.permalink,p.header a:hover {
+p.header a:hover {
 text-decoration: underline;
 }
+p.permalink a {
+text-decoration: none;
+}
+p.permalink a:hover {
+text-decoration: underline;
+}
+
 p.twitter-permalink {
 text-align: right;
 }
