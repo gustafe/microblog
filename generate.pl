@@ -42,7 +42,10 @@ $config{output_path} = '/home/gustaf/public_html/m';
 $config{blog_url}    = 'https://gerikson.com/m';
 $config{blog_author} = 'Gustaf Erikson';
 $config{debug}=0;
+# optional, read a fortune file of taglines for inclusion at the top
+# of the generated page
 $config{taglines} = './Content/taglines.fortune';
+
 # read data from input, and convert to HTML
 
 my ( $days, $pages )
@@ -83,12 +86,21 @@ my %data = (
     year_range =>
         { min => min( keys %$archive ), max => max( keys %$archive ) },
 
-);
-my $taglines = read_entries ( $config{taglines} );
-my $tl_ast = CommonMark->parse(string=>$taglines->[rand @$taglines],smart=>1);
-my $curr_tagline = $tl_ast->render_html(OPT_UNSAFE);
-$curr_tagline  =~ s/^\<p\>/\<p class=\"tagline\"\>/;
-$data{tagline} = $curr_tagline;
+	   );
+### tagline changes every time the blog is generated
+if ($config{taglines}) {
+
+    my $taglines = read_entries ( $config{taglines} );
+    my $tl_ast = CommonMark->parse(string=>$taglines->[rand @$taglines],smart=>1);
+    my $curr_tagline = $tl_ast->render_html(OPT_UNSAFE);
+    # remove surrounding <p> tags, they will be added in the template
+    $curr_tagline =~ s/^\<p\>//;
+    $curr_tagline =~ s/\<\/p\>$//;
+    $data{tagline} = $curr_tagline;
+} else {
+    $data{tagline} = 'This is a simple blog. But it is my simple blog.';
+} 
+
 # create feeds, and load them with frontpage data
 
 # JSON feed
