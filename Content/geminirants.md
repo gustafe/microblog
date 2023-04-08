@@ -175,7 +175,7 @@ I'd just like to interject for a moment: GNU/Hurd is never gonna be finished. Li
 %
 2022-01-27 substack sux
 
-## 🤬 substack is a toxic brand
+## substack is a toxic brand
 
 This post on Wonkette articulates a lot of what I've been seeing regarding Substack lately
 
