@@ -160,7 +160,7 @@ Here they are:
 
 Incidentally I am glad for this because I wrote a previous rant which implied that GNU was *not* POSIX, then I saw this copy-pasta and was briefly worried I was incorrect. Turns out I wasn't!
 
-* 🚀 [previous rant](https://portal.mozz.us/gemini/gerikson.com/gemlog/rark/GNUs-not-Unix.gmi) <span class='link_plain'>gemini://gerikson.com/gemlog/rark/GNUs-not-Unix.gmi</span>
+* [previous rant](https://gerikson.com/m/2021/10/index.html#2021-10-31_gnu_01)
 
 What I find fascinating about this quote is that RMS takes full credit for the infamous opening sentences, which are generally all that most copy-pasters bother with. Impressive.
 
