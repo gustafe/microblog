@@ -25,7 +25,10 @@ use open qw/ :std :encoding(utf8) /;
 binmode( STDOUT, ":encoding(UTF-8)" );
 
 my $start_time = [gettimeofday];
-
+sub delta_time {
+    my ( $msg )  = @_;
+    printf "%.4f - %s\n", tv_interval($start_time), $msg;
+} 
 my $debug = 0;
 
 my $days_to_show  = 10;
@@ -49,11 +52,12 @@ $config{taglines} = './Content/taglines.fortune';
 # read data from input, and convert to HTML
 
 my ( $days, $pages )
-    = collect_days_and_pages( read_entries( $config{filename} ) );
-
+  = collect_days_and_pages( read_entries( $config{filename} ) );
+delta_time( "collected days and pages" );
 convert_articles_to_html($days);
+delta_time( "converted days to html");
 convert_articles_to_html($pages);
-
+delta_time("converted pages to html");
 # gather all data into year/month pages, and save the newest ones for the frontpage and feeds
 
 my $frontpage;
@@ -75,6 +79,7 @@ for my $day (@$days) {
     $article_count += scalar @{ $day->{articles} };
     $day_count++;
 }
+delta_time("gathered all into month pages");
 
 my %data = (
     meta => {
@@ -100,7 +105,7 @@ if ($config{taglines}) {
 } else {
     $data{tagline} = 'This is a simple blog. But it is my simple blog.';
 } 
-
+delta_time( "created taglines");
 # create feeds, and load them with frontpage data
 
 # JSON feed
@@ -134,6 +139,7 @@ my $atom_feed = XML::Atom::SimpleFeed->new(
         url  => 'https://gerikson.com'
     },
 );
+
 
 for my $day ( @{$frontpage} ) {
 
@@ -193,7 +199,7 @@ render_page(
 );
 
 exit 0 if $debug;
-
+delta_time( "created feeds" );
 # create year/month archive pages, and publish them
 
 for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
@@ -213,8 +219,9 @@ for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
         }
     }
 }
-
+delta_time("created and published month entries");
 ### create and publish pages
+
 
 if (@$pages) {
     for my $page (@$pages) {
@@ -225,6 +232,7 @@ if (@$pages) {
             sprintf( "%s/%s.html", $config{output_path}, $page->{name} ) );
     }
 }
+delta_time("created and published pages");
 
 # create and publish front page (index.html)
 $data{meta}->{title} = $config{blog_name};
@@ -234,6 +242,8 @@ $data{meta}->{day_count}     = commify($day_count);
 $data{meta}->{article_count} = commify($article_count);
 $data{meta}->{rendertime}    = sec_to_hms( tv_interval($start_time) );
 render_page( 'microblog.tt', \%data, $config{output_path} . '/index.html' );
+
+delta_time("all done ");
 ### SUBS
 
 sub rewrite_ast {
