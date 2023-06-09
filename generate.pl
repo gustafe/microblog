@@ -27,7 +27,7 @@ binmode( STDOUT, ":encoding(UTF-8)" );
 my $start_time = [gettimeofday];
 sub delta_time {
     my ( $msg )  = @_;
-    printf "%.4f - %s\n", tv_interval($start_time), $msg;
+    printf "%.3f - %s\n", tv_interval($start_time), $msg;
 } 
 my $debug = 0;
 
@@ -203,6 +203,7 @@ delta_time( "created feeds" );
 # create year/month archive pages, and publish them
 
 for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
+    delta_time("$year ...");
     for my $mon ( 1 .. 12 ) {
         if ( $archive->{$year}{$mon} ) {
             $data{meta}{title} = sprintf( "%s - archive for %04d-%02d",
