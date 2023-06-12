@@ -203,7 +203,7 @@ delta_time( "created feeds" );
 # create year/month archive pages, and publish them
 
 for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
-    delta_time("$year ...");
+
     for my $mon ( 1 .. 12 ) {
         if ( $archive->{$year}{$mon} ) {
             $data{meta}{title} = sprintf( "%s - archive for %04d-%02d",
@@ -219,6 +219,7 @@ for my $year ( min( keys %$archive ) .. max( keys %$archive ) ) {
             );
         }
     }
+    delta_time("$year ...");
 }
 delta_time("created and published month entries");
 ### create and publish pages
