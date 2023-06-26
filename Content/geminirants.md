@@ -185,7 +185,7 @@ Substack.com links submitted to Hacker News are usually flagged within minutes (
 
 I won't pay for anything on substack, and I will actively try to flag / delete links to it on social media. There are plenty of competing services for blogging+newsletter. Use them instead of supporting VC-funded alt-right Freeze Peach extremists. 
 
-### Edit: Wed 23 Feb 2022
+#### Edit: Wed 23 Feb 2022
 
 Sadly user 'ykevinator2 got flagged to death for this comment but I think it's quite apt
 
