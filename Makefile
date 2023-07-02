@@ -12,6 +12,7 @@ $(CONTENT)/all: $(CONTENT)/*.md
 
 build: $(CONTENT)/all $(TEMPLATES)/*.tt 
 	@perl $(BIN)/generate.pl $(CONTENT)/all
+	npx -q pagefind --source $(WEBFILES)/
 
 css: $(STYLES)/*.css
 	cp $(STYLES)/*.css $(WEBFILES)/

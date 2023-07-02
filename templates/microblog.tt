@@ -4,7 +4,12 @@
     [% archive_link = format('%04d/%02d/index.html') %]
     [% leading_space_mon = format('%2d') %]
     <h1>[% meta.title -%]</h1>
-    <p class="header"><a href="[% meta.site -%]">home</a> | <a href="#archive">archive</a> | <a href="[% meta.site -%]/about.html">about</a> | <a href="[% meta.site -%]/subscribe.html">subscribe</a></p>
+    <p class="header">
+    <a href="[% meta.site -%]">home</a> |
+    <a href="#search">search</a> |
+    <a href="#archive">archive</a> |
+    <a href="[% meta.site -%]/about.html">about</a> |
+    <a href="[% meta.site -%]/subscribe.html">subscribe</a></p>
 
 <p class="tagline">[% tagline %]</p>
 
@@ -19,6 +24,13 @@
     [% END %]
     [% END %]
 
+<h3 id="search">Search this site</h3>
+<div id="searchbox"></div>
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        new PagefindUI({ element: "#searchbox" });
+    });
+</script>
 
 <h3 id="archive">Archive</h3>
 <table>
