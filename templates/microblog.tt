@@ -3,7 +3,7 @@
     [% anchor_id = format('%s_%02d') %]
     [% archive_link = format('%04d/%02d/index.html') %]
     [% leading_space_mon = format('%2d') %]
-    <h1>[% meta.title -%]</h1>
+    <h1>[% meta.title -%] 🏳️‍🌈</h1>
     <p class="header">
     <a href="[% meta.site -%]">home</a> |
     <a href="#search">search</a> |
