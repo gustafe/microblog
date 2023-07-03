@@ -10,9 +10,12 @@ WEBFILES=$(HOME)/public_html/m
 $(CONTENT)/all: $(CONTENT)/*.md
 	@cat $^ > $@
 
-build: $(CONTENT)/all $(TEMPLATES)/*.tt 
+publish: $(CONTENT)/all $(TEMPLATES)/*.tt 
 	@perl $(BIN)/generate.pl $(CONTENT)/all
 	npx -q pagefind --source $(WEBFILES)/
+
+update: $(CONTENT)/all
+	@perl $(BIN)/generate.pl $(CONTENT)/all
 
 css: $(STYLES)/*.css
 	cp $(STYLES)/*.css $(WEBFILES)/
