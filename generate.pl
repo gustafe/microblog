@@ -192,6 +192,7 @@ render_page(
 );
 my $xml = $atom_feed->as_string();
 utf8::decode($xml);
+
 render_page(
     'feed.tt',
     { content => $xml },
