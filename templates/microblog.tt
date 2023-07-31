@@ -67,6 +67,4 @@ Render time: <em>[% meta.rendertime -%]</em><br/>
 [% meta.day_count %] days, [% meta.article_count -%] items.<br/>
 [% END -%]
 </p>
-<p>Copyright &copy; Gustaf Erikson [% year_range.min -%]&ndash;[% year_range.max -%]. All rights reserved.</p>    
-  </body>
-  </html>
+[% INCLUDE foot.tt %]

@@ -4,5 +4,6 @@
   [% FOREACH art IN articles %]
      [% art.html %]
   [% END %]
-  </body>
-</html>
+
+[% INCLUDE foot.tt %]
+
