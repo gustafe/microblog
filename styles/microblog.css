@@ -118,3 +118,15 @@ blockquote:before {
 blockquote p {
   display: inline;
 }
+
+/* permalink anchor styling */
+/* 
+article {
+    padding-top: 25px;
+}
+
+:target {
+    background-color: #eef1fe;
+}
+
+*/

@@ -16,10 +16,10 @@
 [% FOREACH d IN days %]
     <h2 class="date" id=[% d.date -%]_[% d.slug -%]><a href="[% meta.site -%]/[% archive_link(d.year, d.mon) -%]#[% d.date -%]_[% d.slug -%]">[% d.title -%]</a></h2>
     [% FOREACH art IN d.articles %]
-    <article>
-    <h3 id="[% art.id %]">&nbsp;</h3>
+    <article >
+    <p id="[% art.id -%]">&nbsp;</p>
       [% art.html %]
-      <p class="permalink"><a href="[% meta.site -%]/[% archive_link(d.year, d.mon) -%]#[% art.id %]">#</a></p>
+      <p class="permalink"><a href="[% meta.site -%]/[% archive_link(d.year, d.mon) -%]#[% art.id -%]">#</a></p>
       </article>
 
     [% END %]
