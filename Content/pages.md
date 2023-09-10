@@ -2,7 +2,7 @@
 
 ## About
 
-Microblog for [gerikson.com](https://gerikson.com/).
+Microblog for [gerikson.com](https://gerikson.com/). Content warning: *snark*.
 
 - [Main blog](https://gerikson.com/blog/)
 - [Projects](https://gerikson.com/index.html#projects)
