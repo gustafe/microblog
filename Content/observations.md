@@ -25,25 +25,6 @@ context](http://www.scripting.com/2006/12/18.html#getYourPovOutOfMsm):
 %
 2005-11-23 observations for 2005-11-23
 
-This may be the final iteration of the `post-observation.pl` script --
-now with plinks and fancy-smanchy CSS styling.
-
-%
-
-Just a new observation to test appending.
-
-I'll add a new para just for the fun of it.
-
-And how about some code?
-
-       print FILE $anchor, "\n";
-       print FILE join "\n", @input;
-       print FILE '&nbsp;' . $anchor_link, "\n\n";
-
-There, done.
-
-%
-
 Today I learnt that it's always a good idea to include a `WHERE` clause in an `UPDATE`. 
 
 %
@@ -61,9 +42,9 @@ The purple number meme [resurfaces](http://www.scripting.com/2005/11/22.html#Whe
 %
 2006-10-14 observations for 2006-10-14
 
-S&aring; var den har terminens dagisst&auml;dning till &auml;nda. Allt har g&aring;tt bra f&ouml;rutom taklampan, det f&aring;r dom som inte var med idag fixa senare.
+Så var den har terminens dagisstädning till ända. Allt har gått bra förutom taklampan, det får dom som inte var med idag fixa senare.
 
-Jag hade g&auml;rna stannat och pratat om Borelius avg&aring;ng med dom papporna som &auml;r journalister, men ska in till S&ouml;derhallarna och &auml;ta lunch ist&auml;llet.
+Jag hade gärna stannat och pratat om Borelius avgång med dom papporna som är journalister, men ska in till Söderhallarna och äta lunch istället.
 
 %
 2006-02-07 observations for 2006-02-07
@@ -106,10 +87,6 @@ I'll write a post about the bug so I can get Bloglines working on fixing it.
 > Is it possible to take dependency avoidance too far? Of course. The flip side of reducing dependencies too aggressively is the Lava Flow anti-pattern [...] 
 
 %
-
-Testing the procmail setup, please ignore.
-
-%
 2006-03-02 observations for 2006-03-02
 
 [Carlo](http://techdirt.com/articles/20060302/1014221_F.shtml):
@@ -129,22 +106,10 @@ That means you, [Steve Gillmor](http://blogs.zdnet.com/Gillmor/).
 %
 2007-08-15 observations for 2007-08-15
 
-I think I've fixed my posting-by-email script. This is a little test.
-
-%
-
-Apparently it worked!
-
-%
-
 This is the best picture I took during my vacation. Possibly the best
 picture I've ever taken ;)
 
 <a href="http://www.flickr.com/photos/gerikson/2648425263/" title="haystack in sunset by gerikson, on Flickr"><img src="http://farm4.static.flickr.com/3017/2648425263_4ebcfec6e0.jpg" width="333" height="500" alt="haystack in sunset" /></a>
-
-%
-
-Testing posting from my Nokia E61.
 
 %
 2007-10-10 observations for 2007-10-10
@@ -345,14 +310,9 @@ Fronts*](http://www.eurogamer.net/article.php?article_id=84312):
 
 [Rui](http://the.taoofmac.com/space/blog/2006-01-09.23:00):
 
-> Wow, GarageBand got a Podcasting authoring studio. That's, er... so
-2004 of them. I had visions of Clippy popping up and saying "You appear
-to be recording a podcast! What kind of cheesy background music you want
-to pick?"
+> Wow, GarageBand got a Podcasting authoring studio. That's, er... so 2004 of them. I had visions of Clippy popping up and saying "You appear to be recording a podcast! What kind of cheesy background music you want to pick?"
 
-> But no, you get a "speech enhancer" so that you won't sound like a
-geek in a basement/attic somewhere. Or, if you prefer, to sound like a geek
-in a big, echoing cave. 
+> But no, you get a "speech enhancer" so that you won't sound like a geek in a basement/attic somewhere. Or, if you prefer, to sound like a geek in a big, echoing cave. 
 
 %
 2007-05-17 observations for 2007-05-17
@@ -518,10 +478,6 @@ Word.
 %
 2006-01-31 observations for 2006-01-31
 
-I'm "VABing" at home, so there's some time for blog housekeeping.
-
-%
-
 Soundtrack to these gloomy days is, incongruously,
 [Morningwood's](http://www.morningwoodrocks.com/) self-titled
 album. Specifically the absurdly catchy, self-referential *Nth
@@ -648,10 +604,7 @@ content companies than delivering great products for users.
 
 John writes in a comment:
 
-> The best thing that could happen to Apple this year would be for
- Microsoft's Zune 2.0 to be a kick-ass product, both technologically
- and in terms of being designed to make customers happy, not
- entertainment conglomerates. Apple needs competition.
+> The best thing that could happen to Apple this year would be for  Microsoft's Zune 2.0 to be a kick-ass product, both technologically  and in terms of being designed to make customers happy, not  entertainment conglomerates. Apple needs competition.
 
 I wholly agree, but I don't think we'll see anything that will make
 customers happy from Microsoft. They're deeper into the content
@@ -724,7 +677,7 @@ Sounds likely.
 
 Oops.
 
-> Nyss skickade IOGT-NTO ut ett nyhetsbrev med hela sitt epostregister i CC-f&auml;ltet, 670 adresser n&auml;rmare best&auml;mt. Snyggt d&auml;r.
+> Nyss skickade IOGT-NTO ut ett nyhetsbrev med hela sitt epostregister i CC-fältet, 670 adresser närmare bestämt. Snyggt där.
 
 -- [Linus](http://www.mumindalen.net/blog/entry/show/352)
 
@@ -1064,11 +1017,11 @@ just move on.
 %
 
 [Anina Rabe om Tom Alandhs
-Facit-dokument&auml;r](http://shampoorising.typepad.com/shampoo_rising/2007/11/ett-land-dr-kro.html):
+Facit-dokumentär](http://shampoorising.typepad.com/shampoo_rising/2007/11/ett-land-dr-kro.html):
 
-> Det var &auml;kta svensk mansmytologi i dess prydno [...], ett slags idealhistoria om ett land som alltid med stolthet kommer att v&auml;rdera fysisk aktivitet mycket h&ouml;gre &auml;n cerebral.
+> Det var äkta svensk mansmytologi i dess prydno [...], ett slags idealhistoria om ett land som alltid med stolthet kommer att värdera fysisk aktivitet mycket högre än cerebral.
 
-> S&aring; gick Facit ocks&aring; under n&auml;r teknologin utvecklades. Hade de satsat mer p&aring; forskning och utveckling &auml;n p&aring; att driva ett j&auml;vla fotbollslag hade de kanske inte g&aring;tt i k&aring;nken och beh&ouml;vt frist&auml;lla hela sin personal.  Tydligare &auml;n s&aring; kan inte de svenska prioriteringarna visas.
+> Så gick Facit också under när teknologin utvecklades. Hade de satsat mer på forskning och utveckling än på att driva ett jävla fotbollslag hade de kanske inte gått i kånken och behövt friställa hela sin personal.  Tydligare än så kan inte de svenska prioriteringarna visas.
 
 %
 2007-08-31 observations for 2007-08-31
@@ -1157,11 +1110,6 @@ Fancy that...
 [James nails it on the head](http://www.cincomsmalltalk.com/blog/blogView?showComments=true&entry=3313395975). 
 
 %
-2006-06-26 observations for 2006-06-26
-
-This is a test of my mobile blogging solution.
-
-%
 2007-08-24 observations for 2007-08-24
 
 [Russell](http://www.russellbeattie.com/blog/java-needs-an-overhaul):
@@ -1210,7 +1158,7 @@ WiFi is here now, everywhere. WiMax is where? Korea?
 
 [Isobel](http://isobelsverkstad.blogspot.com/2006/01/its-fresh.html):
 
-> Bakom en s&aring;dan h&auml;lsofascism och brist p&aring; respekt f&ouml;r det m&auml;nskliga behovet av egna traditioner anar man hisnande &aring;ngestdjup.
+> Bakom en sådan hälsofascism och brist på respekt för det mänskliga behovet av egna traditioner anar man hisnande ångestdjup.
 
 %
 2006-08-13 observations for 2006-08-13
@@ -1376,7 +1324,7 @@ Microsoft, Motorola) who do not understand the future of the industry.
 2007-09-01 observations for 2007-09-01
 
 For the curious, I was attending a
-*[kr&auml;ftskiva](http://en.wikipedia.org/wiki/Crayfish_party)* yesterday.
+*[kräftskiva](http://en.wikipedia.org/wiki/Crayfish_party)* yesterday.
 
 %
 2008-01-24 observations for 2008-01-24
@@ -1403,7 +1351,7 @@ Yay! It works!
 
 [David Nessle](http://davidnessle.wordpress.com/2007/03/03/den-varldsvida-vaven/):
 
-> Det g&ouml;r alltid ett synnerligen kosmopolitiskt intryck p&aring; Carl Bildts blogg n&auml;r han befinner sig p&aring; ett utrikesministerm&ouml;te och sitter och sl&ouml;bloggar p&aring; laptopen samtidigt som den lettiske utrikesministern f&aring;f&auml;ngt f&ouml;rs&ouml;ker p&aring;kalla hans uppm&auml;rksamhet fr&aring;n podiet. 
+> Det gör alltid ett synnerligen kosmopolitiskt intryck på Carl Bildts blogg när han befinner sig på ett utrikesministermöte och sitter och slöbloggar på laptopen samtidigt som den lettiske utrikesministern fåfängt försöker påkalla hans uppmärksamhet från podiet. 
 
 %
 2006-01-19 observations for 2006-01-19
@@ -1505,16 +1453,16 @@ through Twitter and it's confirmed through a Facebook status change.
 %
 2007-12-19 observations for 2007-12-19
 
-[R&auml;tteg&aring;ngen mot en filderare inleds i
-Link&ouml;ping](http://www.idg.se/2.1085/1.137082):
+[Rättegången mot en filderare inleds i
+Linköping](http://www.idg.se/2.1085/1.137082):
 
-> M&aring;let har varit omstritt redan innan det har kommit ig&aring;ng. Detta eftersom det av f&ouml;runders&ouml;kningen framg&aring;r att b&aring;de Antipiratbyr&aring;n och Ifpi har f&aring;tt unders&ouml;ka de beslagtagna h&aring;rddiskar som utg&ouml;r en viktig del av bevisningen, trots att organisationerna samtidigt &auml;r m&aring;ls&auml;gande.
+> Målet har varit omstritt redan innan det har kommit igång. Detta eftersom det av förundersökningen framgår att både Antipiratbyrån och Ifpi har fått undersöka de beslagtagna hårddiskar som utgör en viktig del av bevisningen, trots att organisationerna samtidigt är målsägande.
 
-> -- Det kommer vi naturligtvis ta upp, s&auml;ger Morgan Gerdin [den anklagades advokat]. Jag menar att r&auml;tte[n] m&aring;ste se och bed&ouml;ma bevisningen med f&ouml;rsiktighet eftersom det &auml;r en part, m&aring;ls&auml;gande, som har f&aring;tt ta del av f&ouml;runders&ouml;kningsmaterial och de facto svarat f&ouml;r den tekniska utredningen sj&auml;lv.
+> -- Det kommer vi naturligtvis ta upp, säger Morgan Gerdin [den anklagades advokat]. Jag menar att rätte[n] måste se och bedöma bevisningen med försiktighet eftersom det är en part, målsägande, som har fått ta del av förundersökningsmaterial och de facto svarat för den tekniska utredningen själv.
 
-Helt r&auml;tt. Det &auml;r otroligt att r&auml;ttighetsinnehavarnas
-intresseorganisationer propagerar f&ouml;r h&ouml;gre straff f&ouml;r
-fildelning och samtidigt f&ouml;rbereder bevisningen. Risken f&ouml;r j&auml;v &auml;r ju
+Helt rätt. Det är otroligt att rättighetsinnehavarnas
+intresseorganisationer propagerar för högre straff för
+fildelning och samtidigt förbereder bevisningen. Risken för jäv är ju
 uppenbar.
 
 %
@@ -1888,12 +1836,6 @@ may be a solution.
 Today's song keeping last-minute Christmas shopping bearable: "Girlfriends" by Divinyls.
 
 %
-2006-01-18 observations for 2006-01-18
-
-I've hacked together a script to post observations from email, this is
-a test of the feature. 
-
-%
 2005-12-10 observations for 2005-12-10
 
 [McD](http://mcdmcblog.wordpress.com/2005/12/09/the-power-of-trackbacks/):
@@ -1950,12 +1892,6 @@ opinionssiffror och förlitar sig på valstrateger.
 [Dave Walker](http://www.freeke.org/ffg/administrivia/weblog/wastedeffort.html):
 
 >  You have IE for Windows, and I have `find`, `grep`, `xargs`, `sed`, and `rm`. It's like bringing a knife to a gunfight, kid.
-
-%
-2006-05-17 observations for 2006-05-17
-
-This is a test entry, I made some changes to the functionality and
-want to test that everything's OK.
 
 %
 2006-12-27 observations for 2006-12-27
