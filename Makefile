@@ -12,7 +12,7 @@ $(CONTENT)/all: $(CONTENT)/*.md
 
 publish: $(CONTENT)/all $(TEMPLATES)/*.tt 
 	@perl $(BIN)/generate.pl $(CONTENT)/all
-	npx -q pagefind --source $(WEBFILES)/
+	npx -q pagefind --site $(WEBFILES)/
 
 update: $(CONTENT)/all
 	@perl $(BIN)/generate.pl $(CONTENT)/all
