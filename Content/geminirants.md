@@ -47,7 +47,7 @@ And the fact remains that most of the art "protected" by NFTs is objectively bad
 * easily varied to produce 10,000 "unique" pictures
 * referencing the ideals of the target: people who aspire to be idle rich assholes
 
-So creating an NFT concept is akin to being a copyrighter. Worthy occupation, but hardly on the scale of Michelangelo.
+So creating an NFT concept is akin to being a copywrighter. Worthy occupation, but hardly on the scale of Michelangelo.
 
 Another view: 
 * 🚀 [left_adjoint on the (ab)use of procedurally generated art for commodity tokens](https://portal.mozz.us/gemini/inconsistentuniverse.space/gemlog/2021-11-21-nftprocgen.gmi) <span class='link_plain'>gemini://inconsistentuniverse.space/gemlog/2021-11-21-nftprocgen.gmi</span>
