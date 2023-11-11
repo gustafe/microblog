@@ -33,6 +33,12 @@ my $debug = 0;
 
 my $days_to_show  = 10;
 my $now           = localtime;
+# workaround to transition to gmtime for the feeds
+
+if ($now->datetime gt '2023-11-07T12:00:00') {
+    say "switching to gmtime...";
+    $now = gmtime;
+}
 my $RE_DATE_TITLE = qr/^(\d{4}-\d{2}-\d{2})(.*?)\n(.*)/s;
 my $RE_AT_PAGE_TITLE
     = qr/^@([a-z0-9_-]+)\[(.+)\]\s+(\d{4}-\d{2}-\d{2})(!?)(.*?)\n(.*)/s;
