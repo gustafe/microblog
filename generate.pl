@@ -313,12 +313,30 @@ sub convert_articles_to_html {
             my $ast   = CommonMark->parse( string => $article, smart => 1 );
             my $nodes = rewrite_ast($ast);
             my $html = $ast->render_html(OPT_UNSAFE);  # support (inline) HTML
+	    my $article_id;
+	    my $slug = $item->{slug} ? $item->{slug} : 'post';
+	    # add new style of article fragment if date is after a cutoff
+	    if ($item->{date} gt '2023-11-17') {
+		my $item_day = (split(/-/,$item->{date}))[-1];
+		my $short_dayname;
+
+		if ($slug =~ /(...).*day$/) {
+		    $short_dayname = $1
+		}
+
+#		printf("==> d%02dp%02d_%s\n",$item_day,$seq, $short_dayname)
+		$article_id=sprintf("d%02dp%02d_%s",
+				    $item_day,
+				    $seq,
+				    $short_dayname ? $short_dayname : $slug);
+	    } else { # legacy ID
+		
+		$article_id =$item->{date} . sprintf( "_%s_%02d",$slug, $seq );
+	    }
+#	    $article_id =$item->{date} . sprintf( "_%s_%02d",$slug, $seq );
             push @articles, {
                 html => $html,
-
-                id => $item->{date}
-                    . sprintf( "_%s_%02d",
-                    $item->{slug} ? $item->{slug} : 'p', $seq )
+                id => $article_id
             };
             $seq++;
         }
