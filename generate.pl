@@ -152,15 +152,27 @@ for my $day ( @{$frontpage} ) {
     for my $art ( @{ $day->{articles} } ) {
         my $url = $config{blog_url}
             . sprintf( '/%04d/%02d/index.html#%s',
-            $day->{year}, $day->{mon}, $art->{id} );
-        my @post_meta = split( /\_/, $art->{id} );
+		       $day->{year}, $day->{mon}, $art->{id} );
+	my @post_meta;
+	my $date_title;
+	my $seq;
+	if ($day->{date} gt '2023-11-17') {
+	    @post_meta = ( $art->{id} =~ m/d(\d+)p(\d+)_(.*)/);
+	    $date_title = $day->{date};
+	    $seq= $post_meta[1];
+	} else {
+	    @post_meta = split( /\_/, $art->{id} );
+	    $date_title = $post_meta[0];
+	    $seq=$post_meta[-1];
+	   
+	}
 	my $content = $art->{html};
 
 	# generate a "second" for the timestamp by grabbing the last
 	# hex digit from the MD5 hash and modding it by 60
 	my $digest_sec = hex(substr(md5_hex(encode_utf8( $content)),-2))%60;
 	
-        my ( $date_title, $seq ) = ( $post_meta[0], $post_meta[-1] );
+#        my ( $date_title, $seq ) = ( $post_meta[0], $post_meta[-1] );
         my $publish_date = sprintf(
             '%sT%02d:%02d:%02d+00:00',
             $day->{date},
