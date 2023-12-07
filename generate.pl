@@ -465,7 +465,7 @@ sub slugify_unidecode($) {
     if ( $input =~ /^observations/ ) {
         return 'observations';
     }
-    if ( $input =~ /(\S+), \d{2} \S+ \d{4}/ ) {
+    if ( $input =~ /(\S+),\s+\d+ \S+ \d{4}/ ) {
         return lc($1);
     }
     $input = NFC($input);        # Normalize (recompose) the Unicode string
