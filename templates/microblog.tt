@@ -25,6 +25,10 @@
     [% END %]
     [% END %]
 
+<p>
+<img src="https://gerikson.com/img/observation_warning.jpg" alt="This is an observation | Do not attempt to help | No reply necessary"/>
+</p>
+
 <h3 id="search">Search this site</h3>
 <div id="searchbox"></div>
 <script>
