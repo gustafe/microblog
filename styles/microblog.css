@@ -98,6 +98,8 @@ text-decoration: underline;
 
 thead th {
     font-family: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
+    position: sticky;
+    top: 0;
 }
 
 
