@@ -79,6 +79,8 @@ text-align: right;
 p.tagline {
     font-style: italic;
     font-size: 0.8em;
+    margin-top: 10px;
+    margin-right: 10%;
 }
 
 table {
