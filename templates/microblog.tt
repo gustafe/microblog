@@ -16,14 +16,13 @@
 [% FOREACH d IN days %]
     <h2 class="date" id=[% d.date -%]_[% d.slug -%]><a href="[% meta.site -%]/[% archive_link(d.year, d.mon) -%]#[% d.date -%]_[% d.slug -%]">[% d.title -%]</a></h2>
     [% FOREACH art IN d.articles %]
-    <article>
-    <p id="[% art.id -%]">&nbsp;</p>
-      [% art.html %]
-      <p class="permalink"><a href="[% meta.site -%]/[% archive_link(d.year, d.mon) -%]#[% art.id -%]">#</a></p>
+      <article>
+        <p id="[% art.id -%]">&nbsp;</p>
+         [% art.html %]
+        <p class="permalink"><a href="[% meta.site -%]/[% archive_link(d.year, d.mon) -%]#[% art.id -%]">#</a></p>
       </article>
-
     [% END %]
-    [% END %]
+[% END %]
 
 
 <h3 id="search">Search this site</h3>
@@ -47,12 +46,12 @@
     </thead>
     <tbody>
     [% FOREACH year IN archive_footer.keys.sort.reverse -%]
-    <tr><td align="right"> [% year -%] </td>
-    [% FOREACH mon IN [1,2,3,4,5,6,7,8,9,10,11,12] -%]
-    [% IF archive_footer.$year.$mon   %]
-       <td align="right"> <a href="[% meta.site -%]/[% archive_link(year, mon) -%]">[% archive_footer.$year.$mon -%] </a></td>
-    [% ELSE %]<td align="center"> &mdash; </td>
-    [% END -%]
+      <tr><td align="right"> [% year -%] </td>
+      [% FOREACH mon IN [1,2,3,4,5,6,7,8,9,10,11,12] -%]
+        [% IF archive_footer.$year.$mon   %]
+          <td align="right"> <a href="[% meta.site -%]/[% archive_link(year, mon) -%]">[% archive_footer.$year.$mon -%] </a></td>
+        [% ELSE %]<td align="center"> &mdash; </td>
+      [% END -%]
     [% END -%]
     </tr>
     [% END -%]
