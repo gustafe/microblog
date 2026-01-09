@@ -103,9 +103,9 @@ if ($config{taglines}) {
 
     my $taglines = read_entries ( $config{taglines} );
     # choose a random entry to publish
-    #    my $tl_ast = CommonMark->parse(string=>$taglines->[rand @$taglines],smart=>1);
+    my $tl_ast = CommonMark->parse(string=>$taglines->[rand @$taglines],smart=>1);
     # choose a tagline from a specific position
-    my $tl_ast = CommonMark->parse(string=>$taglines->[-1],smart=>1);    
+    # my $tl_ast = CommonMark->parse(string=>$taglines->[-1],smart=>1);    
     my $curr_tagline = $tl_ast->render_html(OPT_UNSAFE);
     # remove surrounding <p> tags, they will be added in the template
     $curr_tagline =~ s/^\<p\>//;
@@ -113,7 +113,7 @@ if ($config{taglines}) {
     $data{tagline} = $curr_tagline;
 } else {
     $data{tagline} = 'This is a simple blog. But it is my simple blog.';
-} 
+}
 delta_time( "created taglines");
 # create feeds, and load them with frontpage data
 
