@@ -54,7 +54,9 @@ p.tagline {
     font-style: italic;
     font-size: 0.8em;
 }
-
+code.claude-stop {
+    font-size: 0.4em;
+}
 article {
     margin-top: 10px;
     margin-right: 10%;
