@@ -66,6 +66,7 @@ Render time: <em>[% meta.rendertime -%]</em><br/>
 [% END -%]
 [% IF meta.day_count AND meta.article_count -%]
 [% meta.day_count %] days, [% meta.article_count -%] items.<br/>
+[% meta.days_per_second -%] days / second, [% meta.articles_per_second -%] articles / second.<br/>
 [% END -%]
 </p>
 [% INCLUDE foot.tt %]

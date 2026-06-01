@@ -264,7 +264,10 @@ $data{days} = $frontpage;
 
 $data{meta}->{day_count}     = commify($day_count);
 $data{meta}->{article_count} = commify($article_count);
-$data{meta}->{rendertime}    = sec_to_hms( tv_interval($start_time) );
+my $render_time_seconds = tv_interval($start_time);
+$data{meta}->{rendertime}    = sec_to_hms( $render_time_seconds );
+$data{meta}->{days_per_second} = sprintf("%.2f", $day_count/ $render_time_seconds);
+$data{meta}->{articles_per_second} = sprintf("%.2f", $article_count/ $render_time_seconds);
 render_page( 'microblog.tt', \%data, $config{output_path} . '/index.html' );
 
 delta_time("all done ");
