@@ -9,7 +9,9 @@
     <a href="#search">search</a> |
     <a href="#archive">archive</a> |
     <a href="[% meta.site -%]/about.html">about</a> |
-    <a href="[% meta.site -%]/subscribe.html">subscribe</a></p>
+    <a href="[% meta.site -%]/subscribe.html">subscribe</a> |
+    <a href="https://gerikson.com/babble">slop</a>
+    </p>
 
 <p class="tagline">[% tagline %]</p>
 
